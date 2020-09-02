@@ -1,0 +1,285 @@
+@media (max-width: 1200px) {
+    .header_info p span:first-child {
+        font-size: 18px;
+    }
+    .header_info p span:last-child {
+        font-size: 17px;
+    }
+    .header_info p {
+        width: 108px;
+    }
+    .header_location {
+        margin-left: 10px;
+    }
+    .header_location a {
+        font-size: 17px;
+    }
+    .header_nav {
+        min-width: 260px;
+    }
+    .header_nav ul li a {
+        font-size: 16px;
+    }
+    .header_object a.add_obj,
+    .add_obj {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    .header_account a {
+        font-size: 13px;
+    }
+    .bottom_buttons .price {
+        font-size: 18px;
+    }
+    .bottom_buttons .price span {
+        font-size: 22px;
+    }
+    .bottom_buttons .details {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+    .single_prod .image {
+        min-height: 190px;
+    }
+    .small_prod .image {
+        min-height: 140px;
+    }
+    .small_prod .bottom_buttons .price {
+        font-size: 16px;
+    }
+    .small_prod .bottom_buttons .price span {
+        font-size: 18px;
+    }
+    .small_prod .bottom_buttons .details {
+        font-size: 12px;
+        padding: 5px 8px;
+    }
+    .sec3_single_item {
+        min-height: 180px;
+    }
+    .sec3_single_item p {
+        font-size: 22px;
+        line-height: 26px;
+    }
+    .footer_links a,
+    .footer_account a {
+        font-size: 15px;
+        line-height: 27px;
+    }
+}
+
+@media (max-width: 993px) {
+    .header_wrap {
+        display: none;
+    }
+    .header_mobile {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .mobile-header-toggle {
+        display: block;
+    }
+    footer {
+        padding: 30px 0;
+    }
+    .sec1_filter > div > select,
+    .sec1_filter > div > .location_select {
+        width: 200px;
+        font-size: 16px;
+    }
+    .footer_bottom,
+    .footer_top {
+        display: none;
+    }
+    footer > .container .footer_terms {
+        display: none;
+    }
+    .mobile_footer {
+        display: block;
+    }
+    .top_mob_fotoer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #838282;
+        padding: 0 20px 20px;
+    }
+    .mobile_footer .footer_account a {
+        margin-bottom: 0;
+    }
+    .mobile_footer .footer_account {
+        width: unset;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .mobile_footer .footer_account span {
+        color: #fff;
+        margin: 0 10px;
+    }
+    .bottom_mob_fotoer {
+        text-align: center;
+        padding-top: 25px;
+    }
+    .mobile_footer .footer_links {
+        width: unset;
+        margin-bottom: 35px;
+    }
+    footer .mobile_footer .header_info {
+        justify-content: center;
+    }
+    .mobile_footer .header_info {
+        margin-bottom: 20px;
+    }
+    .mobile_footer .footer_socs {
+        margin: 10px auto 20px;
+    }
+    .large_prods_wrap,
+    .small_prods_wrap {
+        display: none;
+    }
+    .mobile_prods_wrap {
+        display: flex;
+    }
+    .single_prod_info > div > div p {
+        font-size: 17px;
+    }
+    .sec2_show_more {
+        margin-top: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sec1_filter_tags {
+        display: none;
+    }
+    .sec1_filter {
+        background: none;
+        box-shadow: none;
+        flex-direction: column;
+    }
+    .sec1_filter > div > select {
+        width: 100%;
+        margin-bottom: 25px;
+        height: 53px;
+    }
+    .sec1_filter > button {
+        width: 100%;
+        height: 53px;
+    }
+    .sec1_filter > button > img {
+        display: none;
+    }
+    .sec1_title {
+        font-size: 23px;
+        line-height: 30px;
+    }
+    .section1_content {
+        margin-top: 60px;
+    }
+    .section_title {
+        width: unset !important;
+        font-size: 24px;
+        line-height: 31px;
+    }
+    .sec1_filter > div:after {
+        right: 4px;
+        top: 19px;
+    }
+    #section3 .section_subtitle {
+        max-width: unset;
+        font-size: 21px;
+        line-height: 27px;
+    }
+    .bottom_buttons .details {
+        font-size: 12px;
+        padding: 4px 10px;
+    }
+    .bottom_buttons .price {
+        font-size: 16px;
+    }
+    .single_prod_info .title {
+        font-size: 21px;
+        line-height: 27px;
+    }
+    .single_prod_info > div > div p {
+        font-size: 18px;
+        line-height: 23px;
+    }
+}
+
+@media (max-width: 576px) {
+    #section2 > .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .single_prod .image {
+        min-height: 270px;
+    }
+    .bottom_buttons .price {
+        font-size: 20px;
+    }
+    .bottom_buttons .price span {
+        font-size: 26px;
+    }
+    .bottom_buttons .details {
+        font-size: 16px;
+        padding: 10px 25px;
+    }
+    .sec3_text p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 500px) {
+    .sec3_single_item {
+        min-height: 150px;
+    }
+    .sec3_single_item p {
+        font-size: 20px;
+        line-height: 26px;
+    }
+}
+
+@media (max-width: 400px) {
+    .single_prod_info {
+        padding: 15px;
+    }
+    .single_prod .image {
+        min-height: 200px;
+    }
+    .sec3_text p {
+        font-size: 12px;
+        line-height: 16px;
+    }
+}
+@media (max-width: 370px) {
+    .bottom_buttons .details {
+        font-size: 14px;
+        padding: 7px 15px;
+    }
+    .bottom_buttons .price span {
+        font-size: 22px;
+    }
+    .sec3_single_item {
+        min-height: 130px;
+    }
+    .sec3_single_item p {
+        font-size: 16px;
+        line-height: 18px;
+    }
+    .header_location a {
+        font-size: 15px;
+    }
+    .mobile_footer .add_obj {
+        padding: 4px 8px;
+    }
+    .menu_responsive .main_menu li a {
+        font-size: 23px;
+        line-height: 53px;
+    }
+    .menu_responsive .regions a {
+        font-size: 19px;
+    }
+}
