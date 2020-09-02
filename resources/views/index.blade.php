@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <link rel="stylesheet" href="/css/font/fonts.css" />
+        <link rel="stylesheet" href="{{asset('/css/font/fonts.css')}}" />
         <link
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -15,8 +15,8 @@
             integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
             crossorigin="anonymous"
         />
-        <link rel="stylesheet" href="/css/style.css" />
-        <link rel="stylesheet" href="/css/adaptive.css" />
+        <link rel="stylesheet" href="{{asset('/css/style.css')}}" />
+        <link rel="stylesheet" href="{{asset('/css/adaptive.css')}}" />
     </head>
     <body>
         <header>
@@ -24,14 +24,14 @@
                 <div class="header_wrap">
                     <div class="header_info_wrap">
                         <div class="header_info">
-                            <img src="/img/keys.svg" alt="" />
+                            <img src="{{asset('/img/keys.svg')}}" alt="" />
                             <p>
                                 <span> 60-мин.РФ</span>
                                 <span>Отели на час</span>
                             </p>
                         </div>
                         <div class="header_location">
-                            <img src="/img/loc.svg" alt="" />
+                            <img src="{{asset('/img/loc.svg')}}" alt="" />
                             <a href="#">Санкт-Петербург</a>
                         </div>
                     </div>
@@ -52,14 +52,14 @@
                         <a class="add_obj" href="#">Добавить объект</a>
                         <div class="header_account">
                             <a href="#"
-                                ><img src="/img/acc.svg" alt="" />ВХОД</a
+                                ><img src="{{asset('/img/acc.svg')}}" alt="" />ВХОД</a
                             >
                         </div>
                     </div>
                 </div>
                 <div class="header_mobile">
                     <div class="header_info">
-                        <img src="/img/keys.svg" alt="" />
+                        <img src="{{asset('/img/keys.svg')}}" alt="" />
                         <p>
                             <span> 60-мин.РФ</span>
                             <span>Отели на час</span>
@@ -75,7 +75,7 @@
                     <div class="menu_responsive">
                         <div class="mob_menu_header">
                             <div class="header_info">
-                                <img src="/img/reverse-keys.svg" alt="" />
+                                <img src="{{asset('/img/reverse-keys.svg')}}" alt="" />
                                 <p>
                                     <span> 60-мин.РФ</span>
                                     <span>Отели на час</span>
@@ -92,7 +92,7 @@
                         <div class="regions">
                             <a href="#" class="active_region"
                                 >Санкт-Петербург
-                                <img src="/img/arrow.svg" alt=""
+                                <img src="{{asset('/img/arrow.svg')}}" alt=""
                             /></a>
                         </div>
                         <div class="mob_menu_footer">
@@ -137,7 +137,7 @@
                             </option>
                         </select>
                     </div>
-                    <button>Найти <img src="/img/zoom.svg" alt="" /></button>
+                    <button>Найти <img src="{{asset('/img/zoom.svg')}}" alt="" /></button>
                 </div>
                 <div class="sec1_filter_tags">
                     <a href="#">до 1000 руб</a>
@@ -160,7 +160,7 @@
                                     <div
                                         class="image"
                                         style="
-                                            background: url('/img/single_prod.jpg');
+                                            background: url({{asset('/img/single_prod.jpg')}});
                                         "
                                     ></div>
                                     <div class="single_prod_info">
@@ -170,21 +170,21 @@
                                         <div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_place.svg"
+                                                    src="{{asset('/img/prod_place.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>ул. Марата, д. 73</p>
                                             </div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_metro.svg"
+                                                    src="{{asset('/img/prod_metro.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>Маяковская</p>
                                             </div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_clock.svg"
+                                                    src="{{asset('/img/prod_clock.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>от 2х часов</p>
@@ -206,7 +206,7 @@
                                     <div
                                         class="image"
                                         style="
-                                            background: url('/img/single_prod.jpg');
+                                            background: url({{asset('/img/single_prod.jpg')}});
                                         "
                                     ></div>
                                     <div class="single_prod_info">
@@ -216,21 +216,21 @@
                                         <div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_place.svg"
+                                                    src="{{asset('/img/prod_place.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>ул. Марата, д. 73</p>
                                             </div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_metro.svg"
+                                                    src="{{asset('/img/prod_metro.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>Маяковская</p>
                                             </div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_clock.svg"
+                                                    src="{{asset('/img/prod_clock.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>от 2х часов</p>
@@ -252,7 +252,7 @@
                                     <div
                                         class="image"
                                         style="
-                                            background: url('/img/single_prod.jpg');
+                                            background: url({{asset('/img/single_prod.jpg')}});
                                         "
                                     ></div>
                                     <div class="single_prod_info">
@@ -262,21 +262,21 @@
                                         <div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_place.svg"
+                                                    src="{{asset('/img/prod_place.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>ул. Марата, д. 73</p>
                                             </div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_metro.svg"
+                                                    src="{{asset('/img/prod_metro.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>Маяковская</p>
                                             </div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_clock.svg"
+                                                    src="{{asset('/img/prod_clock.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>от 2х часов</p>
@@ -300,7 +300,7 @@
                                     <div
                                         class="image"
                                         style="
-                                            background: url('/img/single_prod.jpg');
+                                            background: url({{asset('/img/single_prod.jpg')}});
                                         "
                                     ></div>
                                     <div class="single_prod_info">
@@ -310,21 +310,21 @@
                                         <div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_place.svg"
+                                                    src="{{asset('/img/prod_place.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>ул. Марата, д. 73</p>
                                             </div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_metro.svg"
+                                                    src="{{asset('/img/prod_metro.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>Маяковская</p>
                                             </div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_clock.svg"
+                                                    src="{{asset('/img/prod_clock.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>от 2х часов</p>
@@ -346,7 +346,7 @@
                                     <div
                                         class="image"
                                         style="
-                                            background: url('/img/single_prod.jpg');
+                                            background: url({{asset('/img/single_prod.jpg')}});
                                         "
                                     ></div>
                                     <div class="single_prod_info">
@@ -356,21 +356,21 @@
                                         <div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_place.svg"
+                                                    src="{{asset('/img/prod_place.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>ул. Марата, д. 73</p>
                                             </div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_metro.svg"
+                                                    src="{{asset('/img/prod_metro.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>Маяковская</p>
                                             </div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_clock.svg"
+                                                    src="{{asset('/img/prod_clock.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>от 2х часов</p>
@@ -392,7 +392,7 @@
                                     <div
                                         class="image"
                                         style="
-                                            background: url('/img/single_prod.jpg');
+                                            background: url({{asset('/img/single_prod.jpg')}});
                                         "
                                     ></div>
                                     <div class="single_prod_info">
@@ -402,21 +402,21 @@
                                         <div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_place.svg"
+                                                    src="{{asset('/img/prod_place.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>ул. Марата, д. 73</p>
                                             </div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_metro.svg"
+                                                    src="{{asset('/img/prod_metro.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>Маяковская</p>
                                             </div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_clock.svg"
+                                                    src="{{asset('/img/prod_clock.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>от 2х часов</p>
@@ -438,7 +438,7 @@
                                     <div
                                         class="image"
                                         style="
-                                            background: url('/img/single_prod.jpg');
+                                            background: url({{asset('/img/single_prod.jpg')}});
                                         "
                                     ></div>
                                     <div class="single_prod_info">
@@ -448,21 +448,21 @@
                                         <div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_place.svg"
+                                                    src="{{asset('/img/prod_place.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>ул. Марата, д. 73</p>
                                             </div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_metro.svg"
+                                                    src="{{asset('/img/prod_metro.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>Маяковская</p>
                                             </div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_clock.svg"
+                                                    src="{{asset('/img/prod_clock.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>от 2х часов</p>
@@ -486,7 +486,7 @@
                                     <div
                                         class="image"
                                         style="
-                                            background: url('/img/single_prod.jpg');
+                                            background: url({{asset('/img/single_prod.jpg')}});
                                         "
                                     ></div>
                                     <div class="single_prod_info">
@@ -496,21 +496,21 @@
                                         <div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_place.svg"
+                                                    src="{{asset('/img/prod_place.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>ул. Марата, д. 73</p>
                                             </div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_metro.svg"
+                                                    src="{{asset('/img/prod_metro.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>Маяковская</p>
                                             </div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_clock.svg"
+                                                    src="{{asset('/img/prod_clock.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>от 2х часов</p>
@@ -532,7 +532,7 @@
                                     <div
                                         class="image"
                                         style="
-                                            background: url('/img/single_prod.jpg');
+                                            background: url({{asset('/img/single_prod.jpg')}});
                                         "
                                     ></div>
                                     <div class="single_prod_info">
@@ -542,21 +542,21 @@
                                         <div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_place.svg"
+                                                    src="{{asset('/img/prod_place.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>ул. Марата, д. 73</p>
                                             </div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_metro.svg"
+                                                    src="{{asset('/img/prod_metro.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>Маяковская</p>
                                             </div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_clock.svg"
+                                                    src="{{asset('/img/prod_clock.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>от 2х часов</p>
@@ -578,7 +578,7 @@
                                     <div
                                         class="image"
                                         style="
-                                            background: url('/img/single_prod.jpg');
+                                            background: url({{asset('/img/single_prod.jpg')}});
                                         "
                                     ></div>
                                     <div class="single_prod_info">
@@ -588,21 +588,21 @@
                                         <div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_place.svg"
+                                                    src="{{asset('/img/prod_place.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>ул. Марата, д. 73</p>
                                             </div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_metro.svg"
+                                                    src="{{asset('/img/prod_metro.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>Маяковская</p>
                                             </div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_clock.svg"
+                                                    src="{{asset('/img/prod_clock.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>от 2х часов</p>
@@ -624,7 +624,7 @@
                                     <div
                                         class="image"
                                         style="
-                                            background: url('/img/single_prod.jpg');
+                                            background: url({{asset('/img/single_prod.jpg')}});
                                         "
                                     ></div>
                                     <div class="single_prod_info">
@@ -634,21 +634,21 @@
                                         <div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_place.svg"
+                                                    src="{{asset('/img/prod_place.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>ул. Марата, д. 73</p>
                                             </div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_metro.svg"
+                                                    src="{{asset('/img/prod_metro.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>Маяковская</p>
                                             </div>
                                             <div>
                                                 <img
-                                                    src="/img/prod_clock.svg"
+                                                    src="{{asset('/img/prod_clock.svg')}}"
                                                     alt=""
                                                 />
                                                 <p>от 2х часов</p>
@@ -688,7 +688,7 @@
                         <div class="col-6 col-lg-3">
                             <div
                                 class="sec3_single_item"
-                                style="background: url('../img/sec3_item.jpg')"
+                                style="background: url({{asset('/img/sec3_item.jpg')}})"
                             >
                                 <p>Романтическое свидание</p>
                             </div>
@@ -696,7 +696,7 @@
                         <div class="col-6 col-lg-3">
                             <div
                                 class="sec3_single_item"
-                                style="background: url('../img/sec3_item.jpg')"
+                                style="background: url({{asset('/img/sec3_item.jpg')}})"
                             >
                                 <p>Романтическое свидание</p>
                             </div>
@@ -704,7 +704,7 @@
                         <div class="col-6 col-lg-3">
                             <div
                                 class="sec3_single_item"
-                                style="background: url('../img/sec3_item.jpg')"
+                                style="background: url({{asset('/img/sec3_item.jpg')}})"
                             >
                                 <p>Романтическое свидание</p>
                             </div>
@@ -712,7 +712,7 @@
                         <div class="col-6 col-lg-3">
                             <div
                                 class="sec3_single_item"
-                                style="background: url('../img/sec3_item.jpg')"
+                                style="background: url({{asset('/img/sec3_item.jpg')}})"
                             >
                                 <p>Романтическое свидание</p>
                             </div>
@@ -720,7 +720,7 @@
                         <div class="col-6 col-lg-3">
                             <div
                                 class="sec3_single_item"
-                                style="background: url('../img/sec3_item.jpg')"
+                                style="background: url({{asset('/img/sec3_item.jpg')}})"
                             >
                                 <p>Романтическое свидание</p>
                             </div>
@@ -728,7 +728,7 @@
                         <div class="col-6 col-lg-3">
                             <div
                                 class="sec3_single_item"
-                                style="background: url('../img/sec3_item.jpg')"
+                                style="background: url({{asset('/img/sec3_item.jpg')}})"
                             >
                                 <p>Романтическое свидание</p>
                             </div>
@@ -736,7 +736,7 @@
                         <div class="col-6 col-lg-3">
                             <div
                                 class="sec3_single_item"
-                                style="background: url('../img/sec3_item.jpg')"
+                                style="background: url({{asset('/img/sec3_item.jpg')}})"
                             >
                                 <p>Романтическое свидание</p>
                             </div>
@@ -744,7 +744,7 @@
                         <div class="col-6 col-lg-3">
                             <div
                                 class="sec3_single_item"
-                                style="background: url('../img/sec3_item.jpg')"
+                                style="background: url({{asset('/img/sec3_item.jpg')}})"
                             >
                                 <p>Романтическое свидание</p>
                             </div>
@@ -803,7 +803,7 @@
                 <div class="footer_top">
                     <div class="footer_info">
                         <div class="header_location">
-                            <img src="/img/loc.svg" alt="" />
+                            <img src="{{asset('/img/loc.svg')}}" alt="" />
                             <a href="#">Санкт-Петербург</a>
                         </div>
                     </div>
@@ -825,7 +825,7 @@
                 <div class="footer_bottom">
                     <div class="footer_info">
                         <div class="header_info">
-                            <img src="/img/keys.svg" alt="" />
+                            <img src="{{asset('/img/keys.svg')}}" alt="" />
                             <p>
                                 <span> 60-мин.РФ </span>
                                 <span>Отели на час</span>
@@ -863,7 +863,7 @@
             <div class="mobile_footer">
                 <div class="top_mob_fotoer">
                     <div class="header_location">
-                        <img src="/img/loc.svg" alt="" />
+                        <img src="{{asset('/img/loc.svg')}}" alt="" />
                         <a href="#">Санкт-Петербург</a>
                     </div>
                     <div class="footer_account">
@@ -872,7 +872,7 @@
                 </div>
                 <div class="bottom_mob_fotoer">
                     <div class="header_info">
-                        <img src="/img/keys.svg" alt="" />
+                        <img src="{{asset('/img/keys.svg')}}" alt="" />
                         <p>
                             <span> 60-мин.РФ </span>
                             <span>Отели на час</span>
@@ -889,9 +889,9 @@
                         <a href="#">Стать партнером</a>
                     </div>
                     <div class="footer_socs">
-                        <a href="#"><img src="/img/inst.svg" alt="" /></a>
-                        <a href="#"><img src="/img/vk.svg" alt="" /></a>
-                        <a href="#"><img src="/img/fb.svg" alt="" /></a>
+                        <a href="#"><img src="{{asset('/img/inst.svg')}}" alt="" /></a>
+                        <a href="#"><img src="{{asset('/img/vk.svg')}}" alt="" /></a>
+                        <a href="#"><img src="{{asset('/img/fb.svg')}}" alt="" /></a>
                     </div>
                     <p class="footer_terms">
                         © 2020 <br />
@@ -916,6 +916,6 @@
             integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
             crossorigin="anonymous"
         ></script>
-        <script src="/js/custom.js"></script>
+        <script src="{{asset('/js/custom.js')}}"></script>
     </body>
 </html>
