@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
 use App\Property;
 use App\PropertiesPhoto;
 use Illuminate\Http\Request;
@@ -12,7 +11,7 @@ class MenuPagesController extends Controller
     public function index(){
             return view('index');
     }
-    /*
+/*
     public function listings(){
         return view('listings');
     }
@@ -25,13 +24,13 @@ class MenuPagesController extends Controller
         $slug = Category::where('slug', $slug)->first();
         return view('category', ['category' =>$slug]);
     }
-    /**
+
     public function listings(Request $request, Property $property){
         //$properties = Property::orderBy('created_at', 'desc')->get();
         $properties = $property->getPropertiesBySearch($request)->get();
-        return view('listings', ['properties'=>$properties ]);
+        return view('catalog', ['properties'=>$properties ]);
     }
-     * */
+
     public function property($id){
         $property = Property::where('id', $id)->first();
         return view('property', ['property' =>$property]);
@@ -53,15 +52,21 @@ class MenuPagesController extends Controller
         if(request()->ajax()) {
             if(!empty($request->rooms)&&!empty($request->property_type)&&!empty($request->location)) {
                 if ($request->rooms === "ALL"&&$request->property_type === "ALL"&&$request->location === "ALL") {
-                    $properties = $property->orderBy('created_at', 'desc')->get();
-                    return view('layouts.ajax_listing', ['properties' => $properties]);
+                    $properties0 = $property->orderBy('created_at', 'desc');
+                    $properties1 = $properties0->limit(6)->get();
+                    $properties2 = $properties0->offset(6)->get();
+                    return view('layouts.ajax_listing', ['properties' => $properties0, 'properties1' =>$properties1, 'properties2' =>$properties2]);
                 }
-                $properties = $property->getPropertiesBySearch($request)->orderBy('created_at', 'desc')->get();
-                return view('layouts.ajax_listing', ['properties' => $properties]);
+                $properties0 = $property->getPropertiesBySearch($request)->orderBy('created_at', 'desc');
+                $properties1 = $properties0->limit(6)->get();
+                $properties2 = $properties0->offset(6)->get();
+                return view('layouts.ajax_listing', ['properties' => $properties0, 'properties1' =>$properties1, 'properties2' =>$properties2]);
             }
         }
-        $properties = $property->getPropertiesBySearch($request)->orderBy('created_at', 'desc')->get();
-        return view('listings', ['properties' => $properties]);
+        $properties0 = $property->getPropertiesBySearch($request)->orderBy('created_at', 'desc');
+        $properties1 = $properties0->limit(6)->get();
+        $properties2 = $properties0->skip(6)->take(8)->get();
+        return view('catalog', ['properties' => $properties0, 'properties1' =>$properties1, 'properties2' =>$properties2]);
     }
     function ajaxFilterInputPropertyType(Request $request)
     {
@@ -90,4 +95,16 @@ class MenuPagesController extends Controller
         }
         echo json_encode($property_location);
     }
+
+
+    public function ajax_city(Request $request){
+        //dd($request->vendor);
+        if(request()->ajax()) {
+            //$select_tyres = $select_tyre->getSelectTyresBySearch($request)->get();
+           // $select_tyres = array(1,2);
+           // return view('layouts.ajax_city', ['select_tyres' => $select_tyres]);
+        }
+    }
+
+
 }

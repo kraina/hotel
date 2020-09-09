@@ -17,77 +17,37 @@
                     <span><img src="{{asset('img/bread_arrow.svg')}}" alt="" /></span>
                     <a href="#">Отели в Москве</a>
                     <span><img src="{{asset('img/bread_arrow.svg')}}" alt="" /></span>
-                    <a href="#">Отель “Невский Форум”</a>
+                    <a href="#">{{ $property->title }}</a>
                 </div>
                 <div class="hotel_top">
                     <div class="row">
                         <div class="col-lg-7 hotel_photos">
                             <p class="hotel_mobile_title">
-                                Отель "Невский форум"
+                                {{ $property->title }}
                             </p>
                             <div class="hotel_main_photo">
-                                <div>
-                                    <img src="{{asset('/img/hotel_photo.jpg')}}" alt="" />
-                                </div>
-                                <div>
-                                    <img src="{{asset('/img/hotel_photo.jpg')}}" alt="" />
-                                </div>
-                                <div>
-                                    <img src="{{asset('/img/hotel_photo.jpg')}}" alt="" />
-                                </div>
-                                <div>
-                                    <img src="{{asset('/img/hotel_photo.jpg')}}" alt="" />
-                                </div>
-                                <div>
-                                    <img src="{{asset('/img/hotel_photo.jpg')}}" alt="" />
-                                </div>
+
+                                @foreach($property->properties_photo()->get() as $propertyPhoto )
+                                    <div>
+                                <img src="{{ asset('storage/properties_images/'.$propertyPhoto->name) }}" alt="">
+                                    </div>
+                                @endforeach
                             </div>
                             <div class="hotel_sub_photos">
+                                @foreach($property->properties_photo()->get() as $propertyPhoto )
                                 <div
                                     class="sub_photo"
                                     style="
-                                        background: url({{asset('/img/hotel_photo.jpg')}});
+                                        background: url({{ asset('storage/properties_images/'.$propertyPhoto->name) }});
                                     "
                                 >
                                     <div></div>
                                 </div>
-                                <div
-                                    class="sub_photo"
-                                    style="
-                                        background: url({{asset('/img/hotel_photo.jpg')}});
-                                    "
-                                >
-                                    <div></div>
-                                </div>
-                                <div
-                                    class="sub_photo"
-                                    style="
-                                        background: url({{asset('/img/hotel_photo.jpg')}});
-                                    "
-                                >
-                                    <div></div>
-                                </div>
-                                <div
-                                    class="sub_photo"
-                                    style="
-                                        background: url({{asset('/img/hotel_photo.jpg')}});
-                                    "
-                                >
-                                    <div></div>
-                                </div>
-
-                                <div
-                                    class="sub_photo"
-                                    style="
-                                        background: url({{asset('/img/hotel_photo.jpg')}});
-                                    "
-                                >
-                                    <div></div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                         <div class="col-lg-5 hotel_info">
-                            <p class="hotel_title">Отель "Невский форум"</p>
+                            <p class="hotel_title">{{ $property->title }}</p>
                             <div class="single_prod_info">
                                 <div>
                                     <div>
@@ -95,7 +55,7 @@
                                             src="{{asset('/img/hotel_place.svg')}}"
                                             alt=""
                                         />
-                                        <p>ул. Марата, д. 73</p>
+                                        <p>{{ $property->city()->first()->name }}, {{ $property->address }}</p>
                                     </div>
                                     <div>
                                         <img
@@ -119,11 +79,7 @@
                             </div>
                             <div class="hotel_description">
                                 <p>
-                                    Мини-отель «На Большевиков» — это гостиница
-                                    эконом-класса, удобная для размещения
-                                    приехавшим, как на один день или выходные,
-                                    так и на продолжительное время: каникулы,
-                                    работу, учебу или лечение.
+                                    {{ $property->description}}
                                 </p>
                             </div>
                             <div class="hotel_rooms">
@@ -153,15 +109,7 @@
                         <div class="col-lg-9 main_hotel_descriptionn">
                             <p class="description_title">Описание</p>
                             <p>
-                                Добро пожаловать в мини-отель «На Большевиков»,
-                                предлагающий уютные комнаты для проживания
-                                гостям с самым разным уровнем дохода. Несмотря
-                                на близость огромных торговых центров, Ледового
-                                дворца, многочисленных магазинов, ресторанов и
-                                кафе, район, в котором расположен наш
-                                мини-отель, считается очень зеленым и тихим,
-                                поэтому к нам приезжают люди, которые ценят
-                                комфорт, спокойный отдых и домашнюю атмосферу.
+                                {{ $property->description }}
                             </p>
                             <div id="hidden_description">
                                 <p>

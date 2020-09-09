@@ -129,8 +129,8 @@
                                    <!-- <i class="fas fa-trash">
                                     </i> -->
                                     <div  class="col-auto">
-                                    {!! Form::open(['action' => ['PropertiesController@destroy', $property->id], 'method' => 'POST', 'class' => '']) !!}
-                                    {!! Form::hidden('_method', 'DELETE') !!}
+                                   <!-- {\!! Form::open(['action' => ['PropertiesController@destroy', $property->id], 'method' => 'POST', 'class' => '']) !!} -->
+                                    <!-- {\!! Form::hidden('_method', 'DELETE') !!} -->
                                     {{ Form::button('<i class="fas fa-trash"></i> Delete', ['type' => 'submit', 'class' => 'btn btn-danger btn-sm'] )  }}
                                     {!! Form::close() !!}
                                 </a>
