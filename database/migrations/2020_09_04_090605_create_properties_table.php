@@ -17,7 +17,8 @@ class CreatePropertiesTable extends Migration
             $table->id();
             $table->string('title');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('city_id')->constrained('cities')->onDelete('cascade');
+            /*$table->foreignId('city_id')->constrained('cities')->onDelete('cascade'); */
+            $table->integer('city_id');
             $table->integer('beds');
             $table->integer('indoorSquare')->nullable();
             $table->string('address');

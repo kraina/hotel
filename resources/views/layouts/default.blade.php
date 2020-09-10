@@ -45,10 +45,13 @@
     <script>
         $(document).ready(function(){
 
-            function search_tyres(){
-                console.log($("#vendor").val());
-                var vendor = $("#vendor").val();
-                //console.log(vendor);
+            function city_session(){
+                //console.log($("#city_session").val());
+                var city_session = $("#city_session").val();
+                if(city_session===''){
+                     city_session = 2;
+                }
+                console.log(city_session);
                 var _token = $('input[name="_token"]').val();
 
                 $.ajax({
@@ -56,21 +59,20 @@
                     /*headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},*/
                     dataType: 'html',
                     url: "{{route('ajax_city')}}",
-                    ifModified: true,
-                    cache: false,
-                    data: {vendor: vendor, _token: _token},
+                     ifModified: true,
+                     cache: false,
+                    data: {city_session: city_session, _token: _token},
                     _token: _token,
                     success: function(response){
                         //alert(response);
-                        //$.getScript("{\{asset('js/listings.js')}}");
-                        $('#listings_container').replaceWith(response);
                     }
                 });
             }
-
-            $( document ).on( "change", "#vendor", search_tyres);
-        });
-    </script>
+    $("#city_session").change(function() {
+     city_session();
+    })
+    });
+        </script>
 @yield('script')
 
 </body>
