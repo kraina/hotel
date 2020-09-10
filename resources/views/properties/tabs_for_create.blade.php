@@ -29,12 +29,15 @@
                                 </div>
                             </div>
                             <div class="d-xl-flex justify-content-between" >
-                                <!--
                                 <div class="col-xl form-group" >
-                                    {/{ Form::label('city', 'City*', ['class' => 'text-nowrap']) }}
-                                    {/{ Form::text('city', '', ['class' => 'form-control border border-secondary', 'placeholder' => 'City']) }}
+                                    <select id="city_id" name='city_id' class="form-control border border-secondary">
+                                        @foreach($cities as $city)
+                                            <option value="{{$city->id}}" >{{$city->name}}</option>
+                                        @endforeach
+
+                                    </select>
                                 </div>
-                                -->
+
                             </div>
                             <div class="d-xl-flex" >
                                 <div class="col-xl form-group" >

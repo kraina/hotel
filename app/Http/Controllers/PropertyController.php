@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\City;
 use App\Property;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,16 +34,15 @@ class PropertyController extends Controller
      */
     public function create()
     {
+
+        $cities = City::get();
         /*
-        $categories_prop = Property::select("categories")
-            ->groupBy('categories')
-            ->get();
         $properties_type = Property::select('propertyType')
             ->groupBy('propertyType')
             ->get();
         */
        // return view('properties.create', compact('categories_prop','properties_type'));
-        return view('properties.create');
+        return view('properties.create', compact('cities'));
     }
 
     /**
@@ -54,6 +54,7 @@ class PropertyController extends Controller
     public function store(Request $request)
     {
         $data = request()->validate([
+            'city_id'           => 'required',
             'title'             => 'required',
             'beds'              => '',
             'indoorSquare'      => '',

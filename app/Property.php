@@ -14,6 +14,7 @@ class Property extends Model
     public $primaryKey = 'id';
     public $timestamps = true;
     protected $fillable = [
+        'city_id',
         'title',
         'beds',
         'indoorSquare',
@@ -24,6 +25,7 @@ class Property extends Model
     public function user(){
         return $this->belongsTo('App\User', 'user_id', 'id');
     }
+
     public function city() {
         return $this->belongsTo(City::class);
     }
