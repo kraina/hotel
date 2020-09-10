@@ -15,15 +15,18 @@
                     <a href="#">Санкт-Петербург</a>
 
 
-                    <div class="form-group">
-                        <select name="vendor" id="vendor" class="form-control input-lg dynamic" >
+                        <select name="city_session" id="city_session" class="" >
+                             @if(is_null(session('city'))|| session('city')== 2)
                             <option value="2">Санкт-Петербург</option>
                             <option value="1">Москва</option>
+                                @elseif(session('city')==1)
+                                <option value="1">Москва</option>
+                                <option value="2">Санкт-Петербург</option>
+                            @endif
                         </select>
-                    </div>
-                    <div class="listings_container" id="listings_container">
-
-                    </div>
+                    @if(!is_null(session('city')))
+                        {{session('city')}}
+                        @endif
 
                 </div>
                 </a>
