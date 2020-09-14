@@ -72,3 +72,10 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
     Route::resource('/users', 'UsersController', ['except' => ['show', 'create', 'store']]);
     Route::resource('/', 'UsersController', ['except' => ['show', 'create', 'store']]);
 });
+/*
+Route::namespace('Admin')->prefix('admin.super')->name('admin.super.')->middleware('can:super-admin')->group(function () {
+    Route::resource('/pages', 'PageController');
+    Route::resource('/', 'SuperAdminController', ['except' => ['show', 'create', 'store']]);
+
+});
+*/

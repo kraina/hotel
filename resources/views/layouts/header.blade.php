@@ -10,6 +10,7 @@
                         <span>Отели на час</span>
                     </p>
                 </div>
+                    @if(isset($current_city))
                     <div class="header_location">
                         <img src="{{asset('/img/loc.svg')}}" alt="" />
                         <a class="current_location" id="current_location" href="#"
@@ -23,6 +24,7 @@
                             @endforeach
                         </ul>
                     </div>
+                    @endif
                 </a>
             </div>
             <div class="header_nav">
@@ -54,8 +56,14 @@
                     ><img src="{{asset('/img/acc.svg')}}" alt="" />ВХОД</a
                     > <ul class="sub-menu account-sub-menu">
                         <li><a href="{{route('home.properties.index')}}">ВХОД</a></li>
-                        <li><a href="#">Выйти</a></li>
+                        <li><a href="{{route('logout')}}"
+                               onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();"
+                        >Выйти</a></li>
                     </ul>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                 @endguest
                 </div>
             </div>

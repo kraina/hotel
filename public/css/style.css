@@ -306,6 +306,9 @@ header.non_mainpage {
     bottom: 15px;
     width: calc(100% - 35px);
 }
+.small_prod {
+    margin-bottom: 30px;
+}
 .small_prod .single_prod_info {
     min-height: 205px;
     position: relative;
