@@ -24,7 +24,8 @@ class PropertyController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
         //$properties = Property::orderBy('created_at', 'desc')->get();
-        return view('properties.index', compact('properties'));
+        //return view('properties.index', compact('properties'));
+        return view('properties.account', compact('properties'));
     }
 
     /**
