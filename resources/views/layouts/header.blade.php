@@ -28,10 +28,10 @@
             <div class="header_nav">
                 <ul>
                     <li>
-                        <a href="">ОТЕЛИ</a>
+                        <a href="{{ route('listings') }}">ОТЕЛИ</a>
                     </li>
                     <li>
-                        <a href="{{ route('listings') }}">АППАРТАМЕНТЫ</a>
+                        <a href="#">АППАРТАМЕНТЫ</a>
                     </li>
                     <li>
                         <a href="">ДОМА</a>
@@ -41,9 +41,22 @@
             <div class="header_object">
                 <a class="add_obj" href="#">Добавить объект</a>
                 <div class="header_account">
-                    <a href="{{route('home.properties.index')}}"
+                @guest
+                    <a class=""
                     ><img src="{{asset('/img/acc.svg')}}" alt="" />ВХОД</a
                     >
+                    <ul class="sub-menu account-sub-menu">
+                        <li><a href="{{route('home.properties.index')}}">Вход</a></li>
+                        <li><a href="{{route('register')}}">Регистрация</a></li>
+                    </ul>
+                @else
+                    <a href="{{route('home.properties.index')}}" class="account_enter"
+                    ><img src="{{asset('/img/acc.svg')}}" alt="" />ВХОД</a
+                    > <ul class="sub-menu account-sub-menu">
+                        <li><a href="{{route('home.properties.index')}}">ВХОД</a></li>
+                        <li><a href="#">Выйти</a></li>
+                    </ul>
+                @endguest
                 </div>
             </div>
         </div>
@@ -78,8 +91,8 @@
                 </div>
                 <nav class="main_menu">
                     <ul>
-                        <li><a href="#">Отели</a></li>
-                        <li><a href="{{ route('listings') }}">Аппартаменты</a></li>
+                        <li><a href="{{ route('listings') }}">Отели</a></li>
+                        <li><a href="#">Аппартаменты</a></li>
                         <li><a href="#">Дома</a></li>
                     </ul>
                 </nav>
