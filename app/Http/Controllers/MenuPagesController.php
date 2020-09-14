@@ -6,6 +6,7 @@ use App\City;
 use App\Property;
 use App\PropertiesPhoto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 
 class MenuPagesController extends Controller
 {
@@ -50,25 +51,17 @@ class MenuPagesController extends Controller
     }
     public function ajax_listings(Request $request, Property $property)
     {
+        $city_session = $request->session()->get('city');
 
-        //dd($request->session()->get('city'));
-        /*
         if($request->session()->has("city")){
             $request->city = $request->session()->get('city');
-            //dd($request);
+
             //$properties0 = $property->getPropertiesBySearch($request)->orderBy('created_at', 'desc');
-            //dd($properties0->get());
-            //dd($properties0->get());
-            $properties0 = Property::where('city_id',$request->session()->get('city') );
-            $properties1 = $properties0->limit(6)->get();
-            $properties2 = $properties0->skip(6)->take(8)->get();
+            //$properties0 = Property::where('city_id',$request->session()->get('city') );
+           // $properties1 = $properties0->limit(6)->get();
+           // $properties2 = $properties0->skip(6)->take(8)->get();
            // return view('catalog', ['properties' => $properties0, 'properties1' =>$properties1, 'properties2' =>$properties2]);
         }
-        */
-        //dd($request->session()->has("city"));
-        //dd($request->session()->all());
-        //dd($request->city);
-        //var_dump($request->vendor);
         /*
         if(request()->ajax()) {
             if(!empty($request->rooms)&&!empty($request->property_type)&&!empty($request->location)) {
@@ -84,36 +77,39 @@ class MenuPagesController extends Controller
                 return view('layouts.ajax_listing', ['properties' => $properties0, 'properties1' =>$properties1, 'properties2' =>$properties2]);
             }
         }*/
-
-        $city= City::where('id', $request->city)->first()->name;
+        //dd($request->get('city'));
+        //$current_city= City::where('id', $city_session)->first()->name;
+        $current_city = $city_session;
+        $cities = City::get();
         $properties0 = $property->getPropertiesBySearch($request)->orderBy('created_at', 'desc');
         //dd($properties0->get());
         $properties1 = $properties0->limit(6)->get();
         $properties2 = $properties0->skip(6)->take(8)->get();
        // return view('catalog', ['properties' => $properties0, 'properties1' =>$properties1, 'properties2' =>$properties2]);
-        return view('layouts.ajax_listing', compact('properties0', 'properties1', 'properties2', 'city'));
+        return view('layouts.ajax_listing', compact('properties0', 'properties1', 'properties2', 'current_city', 'cities'));
     }
     public function ajax_listings2(Request $request)
     {
-        $city_session = $request->session()->get('city');
-        if(is_null($city_session)){
-            $city_session = session(['city'=>'2']);
-
+        $request->session()->get('city');
+        if(is_null(session()->get('city'))){
+            $current_city = "Санкт-Петербург";
+        }else{
+            $current_city = session()->get('city');
         }
-        //dd($request->session()->get('city'));
+            $cities = City::get();
+            $city_id = City::where('city', $current_city)->get()->first()->id;
+            $properties0 = Property::where('city', $current_city)->orderBy('created_at', 'desc');
+            //$current_city= City::where('id', $current_city)->first()->name;
 
-            $properties0 = Property::where('city_id', $city_session)->orderBy('created_at', 'desc');
-            $city= City::where('id', $city_session)->first()->name;
             //dd($properties0->get());
             $properties1 = $properties0->limit(6)->get();
             $properties2 = $properties0->skip(6)->take(8)->get();
-            return view('catalog', compact('properties0', 'properties1', 'properties2', 'city'));
+            return view('catalog', compact('properties0', 'properties1', 'properties2', 'current_city', 'cities'));
 
     }
-    public function ajax_index(Request $request, Property $property)
+    private function ajax_index(Request $request, Property $property)
     {
-
-        //dd($request->session()->get('city'));
+        $city_session = $request->session()->get('city');
         /*
         if($request->session()->has("city")){
             $request->city = $request->session()->get('city');
@@ -127,10 +123,6 @@ class MenuPagesController extends Controller
            // return view('catalog', ['properties' => $properties0, 'properties1' =>$properties1, 'properties2' =>$properties2]);
         }
         */
-        //dd($request->session()->has("city"));
-        //dd($request->session()->all());
-        //dd($request->city);
-        //var_dump($request->vendor);
         /*
         if(request()->ajax()) {
             if(!empty($request->rooms)&&!empty($request->property_type)&&!empty($request->location)) {
@@ -147,31 +139,34 @@ class MenuPagesController extends Controller
             }
         }*/
 
-        $city= City::where('id', $request->city)->first()->name;
+        //$current_city= City::where('id', $city_session)->first()->name;
+        $current_city = $city_session;
+        $cities = City::get();
+
         $properties0 = $property->getPropertiesBySearch($request)->orderBy('created_at', 'desc');
-        //dd($properties0->get());
         $properties1 = $properties0->limit(6)->get();
         $properties2 = $properties0->skip(6)->take(8)->get();
-        // return view('catalog', ['properties' => $properties0, 'properties1' =>$properties1, 'properties2' =>$properties2]);
-        return view('layouts.ajax_index', compact('properties0', 'properties1', 'properties2', 'city'));
+        $properties_mob = $properties0->get();
+//dd($cities);
+        return view('layouts.ajax_index', compact('properties0', 'properties1', 'properties2', 'properties_mob', 'current_city', 'cities'));
     }
     public function ajax_index2(Request $request)
     {
-        $city_session = $request->session()->get('city');
-        //dd($city_session);
-        if(is_null($city_session)){
-            $city_session = session(['city'=>'2']);
-
+        $request->session()->get('city');
+        if(is_null(session()->get('city'))){
+            $current_city = "Санкт-Петербург";
+        }else{
+            $current_city = session()->get('city');
         }
-        //dd($city_session);
-
-        $properties0 = Property::where('city_id', $city_session)->orderBy('created_at', 'desc');
-        $city= City::where('id', $city_session)->first()->name;
-        //dd($city);
-        //dd($properties0->get());
+        $cities = City::get();
+        $city_id = City::where('city', $current_city)->get()->first()->id;
+        $properties0 = Property::where('city', $current_city)->orderBy('created_at', 'desc');
+        //$current_city= City::where('id', $current_city)->first()->name;
         $properties1 = $properties0->limit(6)->get();
         $properties2 = $properties0->skip(6)->take(8)->get();
-        return view('index', compact('properties0', 'properties1', 'properties2', 'city'));
+        $properties_mob = $properties0->get();
+        //Artisan::call('cache:clear');
+        return view('index', compact('properties0', 'properties1', 'properties2', 'properties_mob', 'current_city', 'cities'));
 
     }
     function ajaxFilterInputPropertyType(Request $request)
@@ -202,17 +197,23 @@ class MenuPagesController extends Controller
         echo json_encode($property_location);
     }
 
+    public function ajax_city(Request $request, Property $property){
 
-    public function ajax_city(Request $request){
-        //dd($request->vendor);
-        //dd($request->session()->get('key', 'default'));
-        //dd($request->session()->all());
-        //$city_session = $request->session()->put('city',$request->vendor);
-        $city_session = session(['city'=>$request->city_session]);
-        if($request->session()->has("city")){
-            //dd($request->session()->all());
+       // $current_city= City::where('name', $request->get('city'))->first()->id;
+        $current_city= $request->get('city');
+        $page = $request->get('page');
+        $index_url = url('/');
+
+        if(!is_null($request->get('city'))){
+            Artisan::call('config:clear');
+            $request->session()->forget(['city']);
+            $request->session()->put('city', $current_city);
+            $request->session()->save();
+        }
+        if($page == $index_url) {
+            return $this->ajax_index($request, $property);
+        }else if($page === $index_url."/catalog" ){
+           return $this->ajax_listings($request, $property);
         }
     }
-
-
 }

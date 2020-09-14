@@ -2,7 +2,7 @@
     <div class="container">
         <div class="header_wrap">
             <div class="header_info_wrap">
-                <a href="/">
+                <a href="{{ route('index') }}">
                 <div class="header_info">
                     <img src="{{asset('/img/keys.svg')}}" alt="" />
                     <p>
@@ -10,25 +10,19 @@
                         <span>Отели на час</span>
                     </p>
                 </div>
-                <div class="header_location">
-                    <img src="{{asset('/img/loc.svg')}}" alt="" />
-                    <a href="#">Санкт-Петербург</a>
-
-
-                        <select name="city_session" id="city_session" class="" >
-                             @if(is_null(session('city'))|| session('city')== 2)
-                            <option value="2">Санкт-Петербург</option>
-                            <option value="1">Москва</option>
-                                @elseif(session('city')==1)
-                                <option value="1">Москва</option>
-                                <option value="2">Санкт-Петербург</option>
-                            @endif
-                        </select>
-                    @if(!is_null(session('city')))
-                        {{session('city')}}
-                        @endif
-
-                </div>
+                    <div class="header_location">
+                        <img src="{{asset('/img/loc.svg')}}" alt="" />
+                        <a class="current_location" id="current_location" href="#"
+                        >{{ $current_city }}</a
+                        >
+                        <ul class="sub-menu">
+                            @foreach($cities as $city)
+                                @if($city->city !== $current_city)
+                                <li><a href="#">{{$city->city}}</a></li>
+                                @endif
+                            @endforeach
+                        </ul>
+                    </div>
                 </a>
             </div>
             <div class="header_nav">

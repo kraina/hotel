@@ -28,7 +28,7 @@ Route::get('/hotel', function () {
     return view('hotel');
 });
 
-Route::get('/', 'MenuPagesController@ajax_index2')->name('ajax_index2');
+Route::get('/', 'MenuPagesController@ajax_index2')->name('index');
 Route::get('/blog', 'MenuPagesController@blog')->name('blog');
 Route::get('/contact', 'MenuPagesController@contact')->name('contact');
 Route::get('/about', 'MenuPagesController@about')->name('about');
@@ -38,7 +38,7 @@ Route::get('/property/{property}', 'MenuPagesController@property')->name('proper
 Route::get('/categories', 'MenuPagesController@categories')->name('categories');
 Route::get('/category/{category}', 'MenuPagesController@category')->name('category');
 
-Route::get('/layouts/ajax_index', 'MenuPagesController@ajax_index')->name('ajax_index');
+//Route::get('/layouts/ajax_index', 'MenuPagesController@ajax_index')->name('ajax_index');
 Route::get('/layouts/ajax_listings', 'MenuPagesController@ajax_listings')->name('ajax_listings');
 
 Route::get('/layouts/ajax_city', 'MenuPagesController@ajax_city')->name('ajax_city');
