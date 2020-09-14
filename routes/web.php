@@ -58,12 +58,19 @@ Route::group([
     function () {
 
         Route::resource('/', 'HomeController');
+        Route::get('/account-support', 'HomeController@account_support')->name('account-support');
+        Route::get('/account-support-success', 'HomeController@account_support_success')->name('account-support-success');
+
+
 
         Route::resource('/properties', 'PropertyController', ['names' => [
             'img-dropzone-fetch' => 'home.properties.img-dropzone-fetch',
             'img-dropzone-delete' => 'home.properties.{id?}.img-dropzone-delete',
             'img-dropzone-upload' => 'home.properties.{id}.img-dropzone-upload',
         ]]);
+        Route::get('/create2', 'PropertyController@create2')->name('properties.create2');
+        Route::get('/create3', 'PropertyController@create3')->name('properties.create3');
+
 
 
     });

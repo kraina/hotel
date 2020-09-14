@@ -1,4 +1,8 @@
+@if(url()->current() === url('/'))
+<header>
+@else
 <header class="non_mainpage">
+@endif
     <div class="container">
         <div class="header_wrap">
             <div class="header_info_wrap">
@@ -48,14 +52,14 @@
                     ><img src="{{asset('/img/acc.svg')}}" alt="" />ВХОД</a
                     >
                     <ul class="sub-menu account-sub-menu">
-                        <li><a href="{{route('home.properties.index')}}">Вход</a></li>
+                        <li><a href="{{route('home.index')}}">Вход</a></li>
                         <li><a href="{{route('register')}}">Регистрация</a></li>
                     </ul>
                 @else
-                    <a href="{{route('home.properties.index')}}" class="account_enter"
+                    <a href="{{route('home.index')}}" class="account_enter"
                     ><img src="{{asset('/img/acc.svg')}}" alt="" />ВХОД</a
                     > <ul class="sub-menu account-sub-menu">
-                        <li><a href="{{route('home.properties.index')}}">ВХОД</a></li>
+                        <li><a href="{{route('home.index')}}">ВХОД</a></li>
                         <li><a href="{{route('logout')}}"
                                onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();"
