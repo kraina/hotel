@@ -38,19 +38,20 @@
                     location = 'ALL';
 */
                 // console.log(rooms);
-                $.ajax({
-                    type: 'get',
+
+               // $.ajax({
+                //    type: 'get',
                     /*headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},*/
-                    dataType: 'html',
-                    url: "{{route('ajax_listings')}}",
-                    ifModified: true,
-                    cache: false,
-                    data: {property_type: property_type, rooms: rooms, location: location, city: city, _token: _token},
-                    _token: _token,
-                    success: function(response){
-                        $('#catalog_wrap').replaceWith(response);
-                    }
-                });
+                //    dataType: 'html',
+                //    url: "{\{route('ajax_listings')}}",
+               //     ifModified: true,
+                //    cache: false,
+                 //   data: {property_type: property_type, rooms: rooms, location: location, city: city, _token: _token},
+                //    _token: _token,
+               //     success: function(response){
+                //        $('#catalog_wrap').replaceWith(response);
+                 //   }
+               // });
             }
             /*
             $("#property_type").on("change", search_property);
@@ -156,29 +157,12 @@
 
              */
             $("#city_session").change(function() {
-                search_property();
+                //search_property();
             })
         });
     </script>
 
 @endsection
-
 @section('content')
-
-
-
-
 @include('layouts.ajax_listing')
-
-
-
-
-
-
-
-
-
-
-
-
 @endsection

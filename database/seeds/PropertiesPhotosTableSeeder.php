@@ -125,5 +125,61 @@ class PropertiesPhotosTableSeeder extends Seeder
             'name' => 'single_prod.jpg',
             'property_id' => 28
         ]);
+        $properties_photo29 = PropertiesPhoto::create([
+            'name' => 'single_prod.jpg',
+            'property_id' => 29
+        ]);
+        $properties_photo30 = PropertiesPhoto::create([
+            'name' => 'single_prod.jpg',
+            'property_id' => 30
+        ]);
+        $properties_photo31 = PropertiesPhoto::create([
+            'name' => 'single_prod.jpg',
+            'property_id' => 31
+        ]);
+        $properties_photo32 = PropertiesPhoto::create([
+            'name' => 'single_prod.jpg',
+            'property_id' => 32
+        ]);
+        $properties_photo33 = PropertiesPhoto::create([
+            'name' => 'single_prod.jpg',
+            'property_id' => 33
+        ]);
+        $properties_photo34 = PropertiesPhoto::create([
+            'name' => 'single_prod.jpg',
+            'property_id' => 34
+        ]);
+        $properties_photo35 = PropertiesPhoto::create([
+            'name' => 'single_prod.jpg',
+            'property_id' => 35
+        ]);
+        $properties_photo36 = PropertiesPhoto::create([
+            'name' => 'single_prod.jpg',
+            'property_id' => 36
+        ]);
+        $properties_photo37 = PropertiesPhoto::create([
+            'name' => 'single_prod.jpg',
+            'property_id' => 37
+        ]);
+        $properties_photo38 = PropertiesPhoto::create([
+            'name' => 'single_prod.jpg',
+            'property_id' => 38
+        ]);
+        $properties_photo39 = PropertiesPhoto::create([
+            'name' => 'single_prod.jpg',
+            'property_id' => 39
+        ]);
+        $properties_photo40 = PropertiesPhoto::create([
+            'name' => 'single_prod.jpg',
+            'property_id' => 40
+        ]);
+        $properties_photo41 = PropertiesPhoto::create([
+            'name' => 'single_prod.jpg',
+            'property_id' => 41
+        ]);
+        $properties_photo42 = PropertiesPhoto::create([
+            'name' => 'single_prod.jpg',
+            'property_id' => 42
+        ]);
     }
 }

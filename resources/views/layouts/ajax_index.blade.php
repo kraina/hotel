@@ -1,11 +1,15 @@
+
 <div id="city_index" >
     <div id="section1">
+
         <div class="section1_content">
             <p class="sec1_title">
-                @if($city === 'Москва')
+                @if($current_city === 'Москва')
                     Подобрать отель на час в Москве
-                @else
+                @elseif($current_city === 'Санкт-Петербург')
                     Подобрать отель на час в Санкт-Петербурге
+                    @elseif($current_city === 'Сочи')
+                    Подобрать отель на час в Сочи
                 @endif
             </p>
             <div class="sec1_filter">
@@ -50,10 +54,12 @@
         <div class="container">
             <div class="sec2_content">
                 <p class="section_title">
-                    @if($city === 'Москва')
+                    @if($current_city === 'Москва')
                     Лучшие варианты в Москве
-                    @else
+                    @elseif($current_city === 'Санкт-Петербург')
                     Лучшие варианты в Санкт-Петербурге
+                    @elseif($current_city === 'Сочи')
+                    Лучшие варианты в Сочи
                     @endif
                 </p>
 
@@ -73,7 +79,7 @@
                                 ></div>
                                 <div class="single_prod_info">
                                     <p class="title">
-                                        Отель “невский форум”
+                                        {{$property1->title}}
                                     </p>
                                     <div>
                                         <div>
@@ -81,7 +87,7 @@
                                                 src="{{asset('/img/prod_place.svg')}}"
                                                 alt=""
                                             />
-                                            <p>ул. Марата, д. 73</p>
+                                            <p>{{ $current_city }}, {{ $property1->address }}</p>
                                         </div>
                                         <div>
                                             <img
@@ -102,32 +108,31 @@
                                         <p class="price">
                                             от <span>1,000</span> руб
                                         </p>
-                                        <a href="#" class="details">
+                                        <a href="{{route('property', $property1->id)}}" class="details">
                                             ПОДРОБНЕЕ
                                         </a>
                                     </div>
                                 </div>
                             </div>
-
-
-
 
                         </div>
 
                             @endforeach
                     </div>
                     <div class="row small_prods_wrap">
+
+                        @foreach($properties2 as $property2)
                         <div class="col-md-3">
                             <div class="single_prod small_prod">
                                 <div
                                     class="image"
                                     style="
-                                        background: url({{asset('/img/single_prod.jpg')}});
+                                        background: url({{asset('storage/properties_images/'.$property2->properties_photo_cover()->name)}});
                                         "
                                 ></div>
                                 <div class="single_prod_info">
                                     <p class="title">
-                                        Отель “невский форум”
+                                        {{ $property2->title }}
                                     </p>
                                     <div>
                                         <div>
@@ -135,7 +140,7 @@
                                                 src="{{asset('/img/prod_place.svg')}}"
                                                 alt=""
                                             />
-                                            <p>ул. Марата, д. 73</p>
+                                            <p>{{ $current_city }}, {{ $property2->address }}</p>
                                         </div>
                                         <div>
                                             <img
@@ -156,164 +161,29 @@
                                         <p class="price">
                                             от <span>1,000</span> руб
                                         </p>
-                                        <a href="#" class="details">
+                                        <a href="{{route('property', $property1->id)}}" class="details">
                                             ПОДРОБНЕЕ
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="single_prod small_prod">
-                                <div
-                                    class="image"
-                                    style="
-                                        background: url({{asset('/img/single_prod.jpg')}});
-                                        "
-                                ></div>
-                                <div class="single_prod_info">
-                                    <p class="title">
-                                        Отель “невский форум”
-                                    </p>
-                                    <div>
-                                        <div>
-                                            <img
-                                                src="{{asset('/img/prod_place.svg')}}"
-                                                alt=""
-                                            />
-                                            <p>ул. Марата, д. 73</p>
-                                        </div>
-                                        <div>
-                                            <img
-                                                src="{{asset('/img/prod_metro.svg')}}"
-                                                alt=""
-                                            />
-                                            <p>Маяковская</p>
-                                        </div>
-                                        <div>
-                                            <img
-                                                src="{{asset('/img/prod_clock.svg')}}"
-                                                alt=""
-                                            />
-                                            <p>от 2х часов</p>
-                                        </div>
-                                    </div>
-                                    <div class="bottom_buttons">
-                                        <p class="price">
-                                            от <span>1,000</span> руб
-                                        </p>
-                                        <a href="#" class="details">
-                                            ПОДРОБНЕЕ
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="single_prod small_prod">
-                                <div
-                                    class="image"
-                                    style="
-                                        background: url({{asset('/img/single_prod.jpg')}});
-                                        "
-                                ></div>
-                                <div class="single_prod_info">
-                                    <p class="title">
-                                        Отель “невский форум”
-                                    </p>
-                                    <div>
-                                        <div>
-                                            <img
-                                                src="{{asset('/img/prod_place.svg')}}"
-                                                alt=""
-                                            />
-                                            <p>ул. Марата, д. 73</p>
-                                        </div>
-                                        <div>
-                                            <img
-                                                src="{{asset('/img/prod_metro.svg')}}"
-                                                alt=""
-                                            />
-                                            <p>Маяковская</p>
-                                        </div>
-                                        <div>
-                                            <img
-                                                src="{{asset('/img/prod_clock.svg')}}"
-                                                alt=""
-                                            />
-                                            <p>от 2х часов</p>
-                                        </div>
-                                    </div>
-                                    <div class="bottom_buttons">
-                                        <p class="price">
-                                            от <span>1,000</span> руб
-                                        </p>
-                                        <a href="#" class="details">
-                                            ПОДРОБНЕЕ
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="single_prod small_prod">
-                                <div
-                                    class="image"
-                                    style="
-                                        background: url({{asset('/img/single_prod.jpg')}});
-                                        "
-                                ></div>
-                                <div class="single_prod_info">
-                                    <p class="title">
-                                        Отель “невский форум”
-                                    </p>
-                                    <div>
-                                        <div>
-                                            <img
-                                                src="{{asset('/img/prod_place.svg')}}"
-                                                alt=""
-                                            />
-                                            <p>ул. Марата, д. 73</p>
-                                        </div>
-                                        <div>
-                                            <img
-                                                src="{{asset('/img/prod_metro.svg')}}"
-                                                alt=""
-                                            />
-                                            <p>Маяковская</p>
-                                        </div>
-                                        <div>
-                                            <img
-                                                src="{{asset('/img/prod_clock.svg')}}"
-                                                alt=""
-                                            />
-                                            <p>от 2х часов</p>
-                                        </div>
-                                    </div>
-                                    <div class="bottom_buttons">
-                                        <p class="price">
-                                            от <span>1,000</span> руб
-                                        </p>
-                                        <a href="#" class="details">
-                                            ПОДРОБНЕЕ
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
+
                     </div>
                     <div class="mobile_prods_wrap row">
+                        @foreach($properties_mob as $property_mob)
                         <div class="col-12 col-sm-6">
                             <div class="single_prod large_prod">
                                 <div
                                     class="image"
                                     style="
-                                        background: url({{asset('/img/single_prod.jpg')}});
+                                        background: url({{asset('storage/properties_images/'.$property_mob->properties_photo_cover()->name)}});
                                         "
                                 ></div>
                                 <div class="single_prod_info">
                                     <p class="title">
-                                        Отель “невский форум”
+                                        {{ $property_mob->title }}
                                     </p>
                                     <div>
                                         <div>
@@ -321,7 +191,7 @@
                                                 src="{{asset('/img/prod_place.svg')}}"
                                                 alt=""
                                             />
-                                            <p>ул. Марата, д. 73</p>
+                                            <p>{{ $current_city }}, {{ $property_mob->address }}</p>
                                         </div>
                                         <div>
                                             <img
@@ -342,151 +212,14 @@
                                         <p class="price">
                                             от <span>1,000</span> руб
                                         </p>
-                                        <a href="#" class="details">
+                                        <a href="{{route('property', $property_mob->id)}}" class="details">
                                             ПОДРОБНЕЕ
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-sm-6">
-                            <div class="single_prod large_prod">
-                                <div
-                                    class="image"
-                                    style="
-                                        background: url({{asset('/img/single_prod.jpg')}});
-                                        "
-                                ></div>
-                                <div class="single_prod_info">
-                                    <p class="title">
-                                        Отель “невский форум”
-                                    </p>
-                                    <div>
-                                        <div>
-                                            <img
-                                                src="{{asset('/img/prod_place.svg')}}"
-                                                alt=""
-                                            />
-                                            <p>ул. Марата, д. 73</p>
-                                        </div>
-                                        <div>
-                                            <img
-                                                src="{{asset('/img/prod_metro.svg')}}"
-                                                alt=""
-                                            />
-                                            <p>Маяковская</p>
-                                        </div>
-                                        <div>
-                                            <img
-                                                src="{{asset('/img/prod_clock.svg')}}"
-                                                alt=""
-                                            />
-                                            <p>от 2х часов</p>
-                                        </div>
-                                    </div>
-                                    <div class="bottom_buttons">
-                                        <p class="price">
-                                            от <span>1,000</span> руб
-                                        </p>
-                                        <a href="#" class="details">
-                                            ПОДРОБНЕЕ
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <div class="single_prod large_prod">
-                                <div
-                                    class="image"
-                                    style="
-                                        background: url({{asset('/img/single_prod.jpg')}});
-                                        "
-                                ></div>
-                                <div class="single_prod_info">
-                                    <p class="title">
-                                        Отель “невский форум”
-                                    </p>
-                                    <div>
-                                        <div>
-                                            <img
-                                                src="{{asset('/img/prod_place.svg')}}"
-                                                alt=""
-                                            />
-                                            <p>ул. Марата, д. 73</p>
-                                        </div>
-                                        <div>
-                                            <img
-                                                src="{{asset('/img/prod_metro.svg')}}"
-                                                alt=""
-                                            />
-                                            <p>Маяковская</p>
-                                        </div>
-                                        <div>
-                                            <img
-                                                src="{{asset('/img/prod_clock.svg')}}"
-                                                alt=""
-                                            />
-                                            <p>от 2х часов</p>
-                                        </div>
-                                    </div>
-                                    <div class="bottom_buttons">
-                                        <p class="price">
-                                            от <span>1,000 </span>руб
-                                        </p>
-                                        <a href="#" class="details">
-                                            ПОДРОБНЕЕ
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <div class="single_prod large_prod">
-                                <div
-                                    class="image"
-                                    style="
-                                        background: url({{asset('/img/single_prod.jpg')}});
-                                        "
-                                ></div>
-                                <div class="single_prod_info">
-                                    <p class="title">
-                                        Отель “невский форум”
-                                    </p>
-                                    <div>
-                                        <div>
-                                            <img
-                                                src="{{asset('/img/prod_place.svg')}}"
-                                                alt=""
-                                            />
-                                            <p>ул. Марата, д. 73</p>
-                                        </div>
-                                        <div>
-                                            <img
-                                                src="{{asset('/img/prod_metro.svg')}}"
-                                                alt=""
-                                            />
-                                            <p>Маяковская</p>
-                                        </div>
-                                        <div>
-                                            <img
-                                                src="{{asset('/img/prod_clock.svg')}}"
-                                                alt=""
-                                            />
-                                            <p>от 2х часов</p>
-                                        </div>
-                                    </div>
-                                    <div class="bottom_buttons">
-                                        <p class="price">
-                                            от <span>1,000 </span>руб
-                                        </p>
-                                        <a href="#" class="details">
-                                            ПОДРОБНЕЕ
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                     <div class="sec2_show_more">
                         <a href="#">Показать еще</a>

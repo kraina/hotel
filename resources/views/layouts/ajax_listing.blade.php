@@ -3,7 +3,7 @@
     <div class="before_catalog">
         <div class="catalog_title">
             <a href="#" class="catalog_selected_region"
-            >{{ $city }}
+            >
                 <img src="/img/catalog-arr.svg" alt=""
                 /></a>
             <p>ОТЕЛИ НА ЧАС</p>
@@ -64,7 +64,7 @@
                                 src="{{asset('/img/prod_place.svg')}}"
                                 alt=""
                             />
-                            <p>{{ $city }}, {{ $property1->address }}</p>
+                            <p>{{ $current_city }}, {{ $property1->address }}</p>
                         </div>
                         <div>
                             <img
@@ -111,7 +111,7 @@
                                 src="{{asset('/img/prod_place.svg')}}"
                                 alt=""
                             />
-                            <p>{{ $city }}, {{ $property2->address }}</p>
+                            <p>{{ $current_city }}, {{ $property2->address }}</p>
                         </div>
                         <div>
                             <img

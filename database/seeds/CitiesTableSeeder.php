@@ -13,7 +13,8 @@ class CitiesTableSeeder extends Seeder
     public function run()
     {
         City::truncate();
-        City::create(['name' =>'Москва']);
-        City::create(['name' =>'Санкт-Петербург']);
+        City::create(['city' =>'Москва']);
+        City::create(['city' =>'Санкт-Петербург']);
+        City::create(['city' =>'Сочи']);
     }
 }

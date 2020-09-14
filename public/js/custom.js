@@ -68,6 +68,93 @@ jQuery(function ($) {
         $("#hidden_description").addClass("collapse");
     }
 
+    $(".header_location .sub-menu li a ").on("click", function (e) {
+        e.preventDefault();
+        let linkName = $(this).text();
+        $(this).text($(".header_location .current_location").text());
+        $(".header_location .current_location").text(linkName);
+    });
+
+    // ================================ ADD NEW OBJECT ================================
+
+    $("#step1_trigger").on("click", function (e) {
+        e.preventDefault();
+        let error = '<p class="input_error">Заполните обязательное поле!</p>';
+        if (
+            $("#object_step_one_input").val() &&
+            $("#object_step_two_input").val() &&
+            $("#object_step_three_input").val()
+        ) {
+            $(".object_step_four").show();
+            $(".add_new_category_button_wrap").show();
+            $(".add_new_object_bottom_in_progress").hide();
+            $(".input_error").hide();
+            $(".object_step_input").css("border", "1px solid #4D4D4D");
+        } else {
+            let inputs = $(".object_step_input");
+            for (let i = 0; i < inputs.length; i++) {
+                if (!$(inputs)[i].value) {
+                    $(inputs)[i].style.border = "2px solid red";
+                } else {
+                    $(inputs)[i].style.border = "1px solid #4D4D4D";
+                }
+            }
+            $(".input_error").show();
+        }
+    });
+
+    $(".add_new_category_button").on("click", function () {
+        Dropzone.autoDiscover = false;
+        let cloned_block = $(".add_new_category_block_pattern")
+            .clone()
+            .removeClass("add_new_category_block_pattern");
+        let id = Date.now();
+        $(cloned_block)
+            .find(".add_new_category_content")
+            .attr("id", `object-${id}`);
+        $(cloned_block)
+            .find(".category_rooms_photo")
+            .attr("id", `object-photo-${id}`);
+        $(cloned_block)
+            .find(".object_single_category_title")
+            .attr("data-target", `#object-${id}`);
+        $(cloned_block).appendTo(".add_new_category_block_wrap");
+        $(".add_new_object_bottom").show();
+        $(".add_new_object_bottom_in_progress").hide();
+
+        $(`#object-photo-${id}`).dropzone({ url: "/" });
+    });
+
+    $(document).on("click", ".remove_category", function (e) {
+        e.preventDefault();
+        $(this).parent().parent().parent().parent().remove();
+    });
+
+    $(document).on("click", ".add_price_per_hour", function (e) {
+        e.preventDefault();
+        let clone = $(this).parent().find(".edit_price_per_room").clone()[0];
+        $(clone).insertBefore(this);
+    });
+
+    $(document).on(
+        "blur",
+        ".add_new_category_block .category_title input",
+        function () {
+            let text = $(this).val();
+            if (text) {
+                $(this)
+                    .parent()
+                    .parent()
+                    .parent()
+                    .parent()
+                    .find(".object_single_category .title")
+                    .text(text);
+            }
+        }
+    );
+
+    // ================================ ADD NEW OBJECT ================================
+
     // =================== MOBILE MENU ========================
     $(".button_menu").click(function () {
         $(this).toggleClass("active");
@@ -94,6 +181,5 @@ jQuery(function ($) {
             $(".button_menu").click();
         }
     });
-
     // =================== MOBILE MENU ========================
 });
