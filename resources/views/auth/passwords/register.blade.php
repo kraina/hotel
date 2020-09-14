@@ -30,8 +30,8 @@
                                 @enderror
                             </div>
                             <div>
-                                <label for="phonenumber">Ваш номер телефона</label>
-                                <input type="text" name="phonenumber" id="phonenumber" />
+                                <label for="">Ваш номер телефона</label>
+                                <input type="text" />
                             </div>
                             <div>
                                 <label for="">{{ __('E-Mail Address') }}</label>
