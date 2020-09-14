@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('title', 'Document')
 @section('meta')
-<meta name="csrf-token" content="{{ csrf_token() }}">
+<!-- <meta name="csrf-token" content="{\{ csrf_token() }}"> -->
 @endsection
 @section('style')
 
@@ -15,6 +15,7 @@
     <script>
 
         $(document).ready(function(){
+
 
             function search_property(){
                 //alert($("#city_session").val());
@@ -36,19 +37,25 @@
                     location = 'ALL';
 */
                 // console.log(rooms);
-                $.ajax({
-                    type: 'get',
+
+             //   $.ajax({
+             //       type: 'get',
                     /*headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},*/
-                    dataType: 'html',
-                    url: "{{route('ajax_index')}}",
-                    ifModified: true,
-                    cache: false,
-                    data: {property_type: property_type, rooms: rooms, location: location, city: city, _token: _token},
-                    _token: _token,
-                    success: function(response){
-                        $('#city_index').replaceWith(response);
-                    }
-                });
+             //       dataType: 'html',
+              //      url: "{\{route('ajax_index')}}",
+              //      ifModified: true,
+               //     cache: false,
+                //    data: {property_type: property_type, rooms: rooms, location: location, city: city, _token: _token},
+                //    _token: _token,
+                //    success: function(response){
+                        //window.location.href=window.location.href;
+                        //document.location.reload();
+                 //       $('#city_index').replaceWith(response);
+                        //window.location.href=window.location.href;
+
+               //     }
+               // });
+
             }
             /*
             $("#property_type").on("change", search_property);

@@ -12,12 +12,18 @@ class City implements Filterable
 
     public static function apply(Builder $builder, $value)
     {
+        /*
         if($value === "ALL"){
-            return $builder->where("city_id", "!=", $value);
+            return $builder->where("id", "!=", $value);
         }
+        */
+       // dd($value);
+        /*
         if(!is_array($value)) {
             $value = explode(', ', $value);
         }
-        return $builder->whereIn('city_id', $value);
+        */
+        //dd($value);
+        return $builder->where('city', $value);
     }
 }

@@ -4,6 +4,7 @@
 <title>@yield('title')</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @yield('meta')
     <link rel="stylesheet" href="{{asset('css/font/fonts.css')}}" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
@@ -19,7 +20,6 @@
     @yield('style')
 </head>
 <body>
-
     @include('layouts.header')
     @yield('content')
     @include("layouts.footer")
@@ -40,39 +40,34 @@
     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
     crossorigin="anonymous"
 ></script>
+    <script src="{{asset('js/custom.js')}}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="{{asset('js/custom.js')}}"></script>
+<input type="hidden" value="{{url()->current()}}" id="url" name="url">
     <script>
-        $(document).ready(function(){
-
-            function city_session(){
-                //console.log($("#city_session").val());
-                var city_session = $("#city_session").val();
-                if(city_session===''){
-                     city_session = 2;
-                }
-                console.log(city_session);
+        $(document).ready(function() {
+            $('.header_location').click(function () {
+                var city = $('#current_location').text();
+                var page = $("#url").val();
                 var _token = $('input[name="_token"]').val();
-
                 $.ajax({
-                    type: 'get',
-                    /*headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},*/
+                    type: "get",
                     dataType: 'html',
                     url: "{{route('ajax_city')}}",
-                     ifModified: true,
-                     cache: false,
-                    data: {city_session: city_session, _token: _token},
+                    ifModified: true,
+                    cache: false,
+                    data: {city: city, page: page, _token: _token},
                     _token: _token,
-                    success: function(response){
+                    success: function (response) {
                         //alert(response);
+                        $('#city_index').replaceWith(response);
+                        $('#catalog_wrap').replaceWith(response);
+                        //window.location.href=window.location.href;
                     }
                 });
-            }
-    $("#city_session").change(function() {
-     city_session();
-    })
+            });
     });
         </script>
+
 @yield('script')
 
 </body>
