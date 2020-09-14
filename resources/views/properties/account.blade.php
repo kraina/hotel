@@ -47,7 +47,7 @@
                             </div>
                         </a>
                         <a
-                            href="#"
+                            href="{{ route('home.properties.index') }}"
                             class="account_left_section account_single_section account_small_section col-md-6"
                         >
                             <div>
@@ -56,7 +56,7 @@
                             </div>
                         </a>
                         <a
-                            href="#"
+                            href="{{ route('home.properties.create') }}"
                             class="account_single_section account_small_section col-md-6"
                         >
                             <div>
@@ -67,7 +67,7 @@
                             </div>
                         </a>
                         <a
-                            href="#"
+                            href="{{ route('home.account-support') }}"
                             class="account_single_section account_large_section col-md-12"
                         >
                             <div>

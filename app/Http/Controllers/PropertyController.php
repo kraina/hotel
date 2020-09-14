@@ -25,7 +25,7 @@ class PropertyController extends Controller
             ->get();
         //$properties = Property::orderBy('created_at', 'desc')->get();
         //return view('properties.index', compact('properties'));
-        return view('properties.account', compact('properties'));
+        return view('properties.account-objects', compact('properties'));
     }
 
     /**
@@ -43,7 +43,16 @@ class PropertyController extends Controller
             ->get();
         */
        // return view('properties.create', compact('categories_prop','properties_type'));
-        return view('properties.create', compact('cities'));
+       // return view('properties.create', compact('cities'));
+        return view('properties.add-object');
+    }
+    public function create2()
+    {
+        return view('properties.add-object-form');
+    }
+    public function create3()
+    {
+        return view('properties.add-object-form-success');
     }
 
     /**

@@ -26,4 +26,17 @@ class HomeController extends Controller
        // return view('home');
         return view('properties.account');
     }
+    /*
+    public function show()
+    {
+        // return view('home');
+        return view('properties.account-objects');
+    }
+    */
+    public function account_support(){
+        return view('properties.account-support');
+    }
+    public function account_support_success(){
+        return view('properties.account-support-success');
+    }
 }
