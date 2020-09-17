@@ -19,7 +19,7 @@ class CreatePropertiesTable extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             /*$table->foreignId('city_id')->constrained('cities')->onDelete('cascade'); */
             $table->string('city');
-            $table->integer('beds');
+            $table->integer('beds')->nullable();;
             $table->integer('indoorSquare')->nullable();
             $table->string('address');
             $table->string('location')->nullable();

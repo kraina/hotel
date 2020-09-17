@@ -68,9 +68,22 @@ jQuery(function ($) {
         $("#hidden_description").addClass("collapse");
     }
 
+    $("#main_location_select").on("click", function (e) {
+        e.preventDefault();
+        $(".mobile_hidden_mob_location").toggle();
+    });
+
     $(".header_location .sub-menu li a ").on("click", function (e) {
         e.preventDefault();
         let linkName = $(this).text();
+
+        let linkId = $(this).attr("data-id");
+        $(this).attr(
+            "data-id",
+            $(".header_location .current_location").attr("data-id")
+        );
+        $(".header_location .current_location").attr("data-id", linkId);
+
         $(this).text($(".header_location .current_location").text());
         $(".header_location .current_location").text(linkName);
     });
@@ -81,9 +94,12 @@ jQuery(function ($) {
         e.preventDefault();
         let error = '<p class="input_error">Заполните обязательное поле!</p>';
         if (
-            $("#object_step_one_input").val() &&
-            $("#object_step_two_input").val() &&
-            $("#object_step_three_input").val()
+            $("[data-id='object_step_one_input']").val() &&
+            $("[data-id='object_step_two_input']").val() &&
+            $("[data-id='object_step_three_input']").val() &&
+            $("[data-id='object_step_three_city']").val() &&
+            $("[data-id='object_step_three_metro']").val() &&
+            $("[data-id='object_step_three_region']").val()
         ) {
             $(".object_step_four").show();
             $(".add_new_category_button_wrap").show();
@@ -181,5 +197,6 @@ jQuery(function ($) {
             $(".button_menu").click();
         }
     });
+
     // =================== MOBILE MENU ========================
 });
