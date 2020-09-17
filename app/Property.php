@@ -14,7 +14,7 @@ class Property extends Model
     public $primaryKey = 'id';
     public $timestamps = true;
     protected $fillable = [
-        'city_id',
+        'city',
         'title',
         'beds',
         'indoorSquare',

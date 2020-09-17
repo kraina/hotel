@@ -121,6 +121,47 @@
     .single_hotel_room .info div div {
         margin-right: 3px;
     }
+    .acc_single_object .info > div > p,
+    .acc_single_object .info > a {
+        font-size: 16px;
+        line-height: 18px;
+    }
+    .acc_single_object .info .title {
+        font-size: 22px;
+    }
+    .acc_single_object .info {
+        width: 375px;
+    }
+    .acc_single_object .image {
+        min-width: 250px;
+    }
+    .non_payed > div > div > .non_payed_title {
+        font-size: 18px;
+        line-height: 21px;
+    }
+    .non_payed > a {
+        font-size: 15px;
+        padding: 9px 41px;
+    }
+    .non_payed > div {
+        margin-bottom: 25px;
+    }
+    .single_partner_adv p {
+        font-size: 21px;
+    }
+    .partners_add_hotel p {
+        font-size: 20px;
+        max-width: 255px;
+    }
+    .partners_add_hotel .title {
+        font-size: 33px;
+        line-height: 42px;
+        max-width: 388px;
+    }
+    .partners_add_hotel .add_hotel {
+        font-size: 21px;
+        padding: 10px 40px;
+    }
 }
 
 @media (max-width: 993px) {
@@ -314,6 +355,109 @@
     .hotel_reviews_wrap {
         margin-bottom: 70px !important;
     }
+    .account_wrap {
+        margin-top: 61px;
+        padding: 40px 0 60px;
+    }
+    .acc_supp_form textarea {
+        width: 100%;
+    }
+    .acc_supp_single p {
+        max-width: unset;
+    }
+    .acc_support_success_wrap > div .acc_support_success_title {
+        font-size: 36px;
+        line-height: 48px;
+    }
+    .acc_support_success_wrap > div p {
+        font-size: 23px;
+        line-height: 27px;
+    }
+    .acc_support_success_wrap {
+        min-height: 375px;
+    }
+    .acc_objects_content {
+        flex-direction: column-reverse;
+    }
+    .acc_objects_content > div {
+        width: 100%;
+    }
+    .non_payed > div {
+        justify-content: center;
+    }
+    .non_payed > div > div > p {
+        font-size: 17px;
+        line-height: 22px;
+    }
+    .non_payed > div > div > .non_payed_title {
+        font-size: 21px;
+        line-height: 27px;
+    }
+    .non_payed > a {
+        padding: 10px 60px;
+        font-size: 20px;
+    }
+    .acc_single_object .image {
+        min-width: 300px;
+    }
+    .objects_wrap {
+        margin-top: 40px;
+    }
+    .partners_main > div,
+    .partners_main .title {
+        width: 100%;
+    }
+    .partners_wrap {
+        background: none;
+        margin-top: 61px;
+    }
+    .partners_advantages > div {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .single_partner_adv {
+        width: 200px;
+    }
+    .partners_add_hotel {
+        flex-direction: column;
+    }
+    .partners_add_hotel > p,
+    .partners_add_hotel .title {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+    .partners_add_hotel .title {
+        margin-bottom: 10px;
+    }
+    .add_new_category_block .category_title,
+    .add_new_category_block .category_rooms_count {
+        margin: 0 0 40px 0;
+        display: block;
+    }
+    .object_step_three > div {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+    }
+    .object_step_three > div > .select_wrap {
+        width: 100%;
+    }
+    [data-id="object_step_three_city"],
+    [data-id="object_step_three_metro"],
+    [data-id="object_step_three_region"],
+    [data-id="object_step_three_input"] {
+        width: 100% !important;
+        margin: 15px 0;
+    }
+    .object_step_three > div > .select_wrap:after {
+        right: 0;
+        top: 35px;
+    }
+    .location_single_tab > .select_wrap > select {
+        font-size: 16px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -388,6 +532,105 @@
     }
     .single_hotel_room .image {
         min-height: 270px;
+    }
+    .account_left_section > div {
+        flex-direction: row-reverse;
+    }
+    .account_large_section > div .account_sec_title {
+        max-width: 250px;
+    }
+    .account_small_section > div .account_sec_title,
+    .account_small_section > div > div {
+        width: 250px;
+        max-width: unset;
+    }
+    .acc_supp_title {
+        font-size: 28px;
+        line-height: 33px;
+    }
+    .acc_supp_single p,
+    .acc_supp_single p a,
+    .acc_supp_form textarea {
+        font-size: 21px;
+        line-height: 24px;
+    }
+    .acc_supp_form button {
+        font-size: 19px;
+        line-height: 16px;
+        padding: 15px 48px;
+    }
+    .acc_supp_form textarea {
+        height: 150px;
+    }
+    .acc_support_success_wrap > div .acc_support_success_title {
+        font-size: 25px;
+        line-height: 34px;
+    }
+    .acc_support_success_wrap > div p {
+        font-size: 19px;
+        line-height: 27px;
+    }
+    .acc_single_object {
+        flex-direction: column;
+    }
+    .acc_single_object .image {
+        width: 100%;
+        min-width: auto;
+        min-height: 250px;
+    }
+    .acc_single_object .info {
+        height: auto;
+        margin: 0;
+        width: 100%;
+    }
+    .partners_main .title {
+        font-size: 34px;
+        line-height: 43px;
+    }
+    .partners_main > div > p {
+        font-size: 20px;
+        line-height: 27px;
+    }
+    .partners_advantages .title {
+        font-size: 34px;
+        line-height: 43px;
+    }
+    .single_partner_adv {
+        width: 250px;
+    }
+    .partners_add_hotel .title {
+        text-align: center;
+        font-size: 34px;
+        line-height: 43px;
+    }
+    .partners_add_hotel > p {
+        text-align: center;
+    }
+    .add_object_title .subtitle {
+        width: 100%;
+    }
+    .add_object_form_title .title {
+        font-size: 28px;
+        line-height: 32px;
+    }
+    .add_object_form_title .subtitle {
+        text-align: center;
+        font-size: 20px;
+        line-height: 27px;
+    }
+    .acc_reset_content > div > label {
+        font-size: 21px;
+    }
+    .mobile_hidden_mob_location {
+        margin-top: -77px;
+        width: calc(100% - 22px);
+        left: 11px;
+        padding: 15px 20px;
+    }
+    .location_single_tab > .select_wrap,
+    .location_single_tab > .select_wrap > select,
+    .hidden_location_tabs_title {
+        width: 100%;
     }
 }
 
@@ -570,6 +813,191 @@
         padding-left: 15px;
         padding-right: 15px;
     }
+    .acc_supp_form {
+        padding-left: 0;
+    }
+    .acc_supp_form button {
+        display: block;
+        margin: 0 auto;
+    }
+    .acc_support_success_wrap > div .acc_support_success_title {
+        font-size: 21px;
+        line-height: 21px;
+    }
+    .acc_support_success_wrap > div p {
+        font-size: 14px;
+        line-height: 16px;
+    }
+    .acc_support_success_wrap > img {
+        width: 50px;
+    }
+    .acc_support_success_wrap {
+        min-height: 230px;
+    }
+    .account_breadcrumbs a {
+        font-size: 14px;
+        line-height: 14px;
+    }
+    .account_breadcrumbs a img {
+        width: 6px;
+        margin-right: 10px;
+    }
+    .acc_reset_title > img {
+        display: none;
+    }
+    .acc_reset_title > p {
+        max-width: unset;
+        text-align: center;
+        font-size: 29px;
+    }
+    .acc_reset_content > div > label {
+        font-size: 21px;
+        line-height: 31px;
+    }
+    .acc_reset_title {
+        margin-top: 10px;
+    }
+    .acc_reset_content > div .forgot_pass {
+        font-size: 17px;
+    }
+    .acc_reset_content > div > input {
+        height: 47px;
+    }
+    .submit_reset_pass {
+        font-size: 21px;
+        padding: 10px;
+    }
+    .partners_main .title > br {
+        display: none;
+    }
+    .partners_main .title {
+        text-align: center;
+    }
+    .partners_main .title,
+    .partners_advantages .title,
+    .partners_add_hotel .title {
+        font-size: 29px;
+        line-height: 34px;
+    }
+    .partners_main > div > p {
+        font-size: 18px;
+        line-height: 24px;
+    }
+    .single_partner_adv p {
+        font-size: 19px;
+        line-height: 24px;
+    }
+    .partners_wrap {
+        padding: 40px 0 60px;
+    }
+    .add_object {
+        margin-top: 61px;
+        padding: 30px 0 40px;
+    }
+    .add_object_title .title {
+        font-size: 32px;
+        line-height: 41px;
+    }
+    .add_object_title .subtitle {
+        font-size: 21px;
+        line-height: 26px;
+    }
+    .sub_info p {
+        font-size: 17px;
+        line-height: 22px;
+    }
+    .object_step .step_title {
+        font-size: 23px;
+        line-height: 29px;
+    }
+    .object_step input,
+    .object_step textarea {
+        height: 50px;
+        font-size: 19px;
+        line-height: 26px;
+    }
+    .object_step textarea {
+        height: 150px;
+    }
+    .object_single_category .title {
+        font-size: 23px;
+        line-height: 28px;
+    }
+    .object_single_category .remove_category {
+        font-size: 16px;
+        line-height: 17px;
+    }
+    .add_new_category_block .category_title label,
+    .add_new_category_block .category_rooms_count label,
+    .add_new_category_block .category_price_per_room label,
+    .add_new_category_block .category_rooms_photos label {
+        font-size: 21px;
+        line-height: 24px;
+    }
+    .add_new_category_block .category_title input,
+    .add_new_category_block .category_rooms_count input {
+        height: 50px;
+
+        font-size: 17px;
+        line-height: 22px;
+    }
+    .add_price_per_hour {
+        font-size: 16px;
+        line-height: 20px;
+    }
+    /* .category_rooms_photo {
+        width: 150px;
+        height: 150px;
+    } */
+    .add_new_category_button {
+        font-size: 20px;
+    }
+    .add_new_object_bottom p {
+        font-size: 17px;
+    }
+    .add_new_object_next {
+        font-size: 17px;
+        padding: 8px 50px;
+    }
+    .add_new_category_block .category_title input {
+        width: 100%;
+    }
+    .category_price_per_room div select,
+    .category_price_per_room div input {
+        font-size: 17px;
+        line-height: 22px;
+    }
+    .add_new_object_in_progress {
+        margin-left: 0;
+        margin-top: 20px;
+        display: block;
+        max-width: 150px;
+    }
+
+    .add_new_object_bottom > div {
+        display: block;
+    }
+    .add_new_object_bottom p,
+    .add_new_object_bottom img {
+        display: inline-block;
+    }
+    .object_step input,
+    .object_step textarea {
+        padding-left: 15px;
+        text-indent: 0px;
+    }
+    [data-id="object_step_three_city"],
+    [data-id="object_step_three_metro"],
+    [data-id="object_step_three_region"],
+    [data-id="object_step_three_input"] {
+        height: 50px;
+        font-size: 19px;
+        line-height: 26px;
+    }
+    .object_step_three > div > .select_wrap:after {
+        right: 0;
+        top: 28px;
+    }
 }
 
 @media (max-width: 500px) {
@@ -592,6 +1020,84 @@
     }
     .hotel_reviews {
         padding: 25px 0;
+    }
+    .account_small_section > div .account_sec_title,
+    .account_small_section > div > div {
+        width: 220px;
+    }
+    .account_large_section > div .account_sec_title {
+        max-width: 220px;
+    }
+    .account_single_section > div img {
+        width: 75px;
+    }
+    .account_single_section > div {
+        min-height: 130px;
+    }
+    .acc_supp_title {
+        font-size: 23px;
+        line-height: 26px;
+    }
+    .acc_supp_single p,
+    .acc_supp_single p a,
+    .acc_supp_form textarea {
+        font-size: 16px;
+        line-height: 19px;
+    }
+    .acc_supp_form button {
+        font-size: 15px;
+    }
+    .acc_supp_single {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 450px) {
+    .account_single_section > div .account_sec_title {
+        font-size: 20px;
+        line-height: 21px;
+    }
+    .account_single_section > div > div p {
+        font-size: 14px;
+        line-height: 16px;
+    }
+    .account_main_title {
+        font-size: 24px;
+        line-height: 28px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .account_wrap {
+        padding: 30px 0 40px;
+    }
+    .acc_single_object .info > div > p,
+    .acc_single_object .info > a {
+        font-size: 14px;
+        line-height: 14px;
+    }
+    .acc_single_object .info .title {
+        font-size: 18px;
+    }
+    .object_single_category .remove_category {
+        font-size: 14px;
+        line-height: 17px;
+        margin-top: 15px;
+    }
+    .object_single_category .title {
+        font-size: 23px;
+        line-height: 28px;
+    }
+    .object_single_category {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .add_object_form_title .title {
+        font-size: 22px;
+        line-height: 26px;
+    }
+    .add_object_form_title .subtitle {
+        font-size: 17px;
+        line-height: 22px;
     }
 }
 
@@ -630,6 +1136,29 @@
     }
     .recent_hotels_slider .bottom_buttons .price {
         font-size: 16px;
+    }
+    .non_payed > div > div > .non_payed_title {
+        font-size: 18px;
+        line-height: 22px;
+    }
+    .non_payed > div > div > p {
+        font-size: 14px;
+        line-height: 17px;
+    }
+    .non_payed > a {
+        padding: 10px 40px;
+        font-size: 15px;
+    }
+    .acc_single_object .image {
+        min-height: 200px;
+    }
+    .category_price_per_room div input {
+        margin-left: 0;
+        display: block;
+        margin-top: 15px;
+    }
+    .object_single_category .title {
+        font-size: 21px;
     }
 }
 @media (max-width: 370px) {
@@ -676,10 +1205,25 @@
     .single_hotel_room .image {
         min-height: 190px;
     }
+    .account_large_section > div .account_sec_title,
+    .account_small_section > div .account_sec_title,
+    .account_small_section > div > div,
+    .account_single_section > div > div p {
+        max-width: unset;
+        width: unset;
+        padding: 0 5px;
+    }
+    .add_new_category_button {
+        padding: 5px 10px;
+        font-size: 15px;
+    }
 }
 
 @media (max-width: 333px) {
     .recent_hotels_slider_wrap .bottom_buttons .price {
         font-size: 17px;
+    }
+    .hidden_location_tabs_title li a {
+        font-size: 16px;
     }
 }
