@@ -97,14 +97,14 @@ class MenuPagesController extends Controller
             $current_city = session()->get('city');
         }
             $cities = City::get();
-            $city_id = City::where('city', $current_city)->get()->first()->id;
+            $current_city_id = City::where('city', $current_city)->get()->first()->id;
             $properties0 = Property::where('city', $current_city)->orderBy('created_at', 'desc');
             //$current_city= City::where('id', $current_city)->first()->name;
 
             //dd($properties0->get());
             $properties1 = $properties0->limit(6)->get();
             $properties2 = $properties0->skip(6)->take(8)->get();
-            return view('catalog', compact('properties0', 'properties1', 'properties2', 'current_city', 'cities'));
+            return view('catalog', compact('properties0', 'properties1', 'properties2', 'current_city', 'current_city_id', 'cities'));
 
     }
     private function ajax_index(Request $request, Property $property)
@@ -159,14 +159,15 @@ class MenuPagesController extends Controller
             $current_city = session()->get('city');
         }
         $cities = City::get();
-        $city_id = City::where('city', $current_city)->get()->first()->id;
+        $current_city_id = City::where('city', $current_city)->get()->first()->id;
+
         $properties0 = Property::where('city', $current_city)->orderBy('created_at', 'desc');
         //$current_city= City::where('id', $current_city)->first()->name;
         $properties1 = $properties0->limit(6)->get();
         $properties2 = $properties0->skip(6)->take(8)->get();
         $properties_mob = $properties0->get();
         //Artisan::call('cache:clear');
-        return view('index', compact('properties0', 'properties1', 'properties2', 'properties_mob', 'current_city', 'cities'));
+        return view('index', compact('properties0', 'properties1', 'properties2', 'properties_mob', 'current_city', 'current_city_id',  'cities'));
 
     }
     function ajaxFilterInputPropertyType(Request $request)
@@ -216,4 +217,5 @@ class MenuPagesController extends Controller
            return $this->ajax_listings($request, $property);
         }
     }
+
 }

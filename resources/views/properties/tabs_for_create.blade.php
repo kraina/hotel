@@ -30,9 +30,9 @@
                             </div>
                             <div class="d-xl-flex justify-content-between" >
                                 <div class="col-xl form-group" >
-                                    <select id="city_id" name='city_id' class="form-control border border-secondary">
+                                    <select id="city" name='city' class="form-control border border-secondary">
                                         @foreach($cities as $city)
-                                            <option value="{{$city->id}}" >{{$city->name}}</option>
+                                            <option value="{{$city->city}}" >{{$city->city}}</option>
                                         @endforeach
 
                                     </select>

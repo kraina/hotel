@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,8 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-       // return view('home');
-        return view('properties.account');
+        if(Auth::user()->hasRole('user')) {
+            return view('properties.account');
+        }else if(Auth::user()->hasRole('admin')){
+            return view('home');
+        }
     }
     /*
     public function show()

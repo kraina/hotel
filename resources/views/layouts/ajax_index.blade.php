@@ -48,6 +48,78 @@
                 <a href="#">до 2000 руб</a>
                 <a href="#">до 3000 руб</a>
             </div>
+            <div class="mobile_hidden_mob_location">
+                <ul
+                    class="nav hidden_location_tabs_title"
+                    id="myTab"
+                    role="tablist"
+                >
+                    <li class="nav-item">
+                        <a
+                            class="nav-link active"
+                            id="metro-tab"
+                            data-toggle="tab"
+                            href="#metro"
+                            role="tab"
+                            aria-controls="metro"
+                            aria-selected="true"
+                        >Метро</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            id="region-tab"
+                            data-toggle="tab"
+                            href="#region"
+                            role="tab"
+                            aria-controls="region"
+                            aria-selected="false"
+                        >Район</a
+                        >
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div
+                        class="tab-pane fade show active location_single_tab"
+                        id="metro"
+                        role="tabpanel"
+                        aria-labelledby="metro-tab"
+                    >
+                        <div class="select_wrap">
+                            <select>
+                                <option value="" selected disabled hidden>
+                                    Выберите метро
+                                </option>
+                                <option value="Метро 1">Метро 1</option>
+                                <option value="Метро 2">Метро 2</option>
+                                <option value="Метро 3">Метро 3</option>
+                                <option value="Метро 4">Метро 4</option>
+                            </select>
+                        </div>
+                        <button>Применить</button>
+                    </div>
+                    <div
+                        class="tab-pane fade location_single_tab"
+                        id="region"
+                        role="tabpanel"
+                        aria-labelledby="region-tab"
+                    >
+                        <div class="select_wrap">
+                            <select>
+                                <option value="" selected disabled hidden>
+                                    Выберите район
+                                </option>
+                                <option value="Район 1">Район 1</option>
+                                <option value="Район 2">Район 2</option>
+                                <option value="Район 3">Район 3</option>
+                                <option value="Район 4">Район 4</option>
+                            </select>
+                        </div>
+                        <button>Применить</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div id="section2">
@@ -71,12 +143,14 @@
 
 
                             <div class="single_prod large_prod">
+                                @if(!is_null($property1->properties_photo_cover()))
                                 <div
                                     class="image"
                                     style="
                                         background: url({{asset('storage/properties_images/'.$property1->properties_photo_cover()->name) }});
                                         "
                                 ></div>
+                                @endif
                                 <div class="single_prod_info">
                                     <p class="title">
                                         {{$property1->title}}

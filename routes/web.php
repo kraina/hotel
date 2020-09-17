@@ -38,6 +38,7 @@ Route::get('/property/{property}', 'MenuPagesController@property')->name('proper
 Route::get('/categories', 'MenuPagesController@categories')->name('categories');
 Route::get('/category/{category}', 'MenuPagesController@category')->name('category');
 
+
 //Route::get('/layouts/ajax_index', 'MenuPagesController@ajax_index')->name('ajax_index');
 Route::get('/layouts/ajax_listings', 'MenuPagesController@ajax_listings')->name('ajax_listings');
 
@@ -50,6 +51,10 @@ Route::get('/ajax_filter_input_location', 'MenuPagesController@ajaxFilterInputLo
 
 
 Auth::routes();
+
+
+Route::post('properties/img-dropzone-upload/', 'PropertyController@imgDropzoneUpload')->name('home.properties.img-dropzone-upload');
+Route::match(['get', 'post'], 'properties/text_request/', 'PropertyController@text_request')->name('home.properties.text_request');
 Route::group([
     'middleware' => ['auth'],
     'prefix' => 'home',
@@ -61,15 +66,21 @@ Route::group([
         Route::get('/account-support', 'HomeController@account_support')->name('account-support');
         Route::get('/account-support-success', 'HomeController@account_support_success')->name('account-support-success');
 
+        Route::get('properties/test', function () {
+            return view('properties.test');
+        });
+        Route::get('properties/text_request/', 'PropertyController@text_request')->name('home.properties.text_request');
+
 
 
         Route::resource('/properties', 'PropertyController', ['names' => [
             'img-dropzone-fetch' => 'home.properties.img-dropzone-fetch',
             'img-dropzone-delete' => 'home.properties.{id?}.img-dropzone-delete',
-            'img-dropzone-upload' => 'home.properties.{id}.img-dropzone-upload',
+            'img-dropzone-upload' => 'home.properties.img-dropzone-upload',
         ]]);
         Route::get('/create2', 'PropertyController@create2')->name('properties.create2');
         Route::get('/create3', 'PropertyController@create3')->name('properties.create3');
+
 
 
 

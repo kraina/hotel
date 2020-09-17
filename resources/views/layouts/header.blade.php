@@ -17,13 +17,13 @@
                     @if(isset($current_city))
                     <div class="header_location">
                         <img src="{{asset('/img/loc.svg')}}" alt="" />
-                        <a class="current_location" id="current_location" href="#"
+                        <a class="current_location" data-id="{{$current_city_id}}"
                         >{{ $current_city }}</a
                         >
                         <ul class="sub-menu">
                             @foreach($cities as $city)
                                 @if($city->city !== $current_city)
-                                <li><a href="#">{{$city->city}}</a></li>
+                                <li><a data-id="{{$city->id}}">{{$city->city}}</a></li>
                                 @endif
                             @endforeach
                         </ul>
@@ -45,7 +45,7 @@
                 </ul>
             </div>
             <div class="header_object">
-                <a class="add_obj" href="#">Добавить объект</a>
+                <a class="add_obj" href="{{ url('/home/properties/add-object') }}">Добавить объект</a>
                 <div class="header_account">
                 @guest
                     <a class=""

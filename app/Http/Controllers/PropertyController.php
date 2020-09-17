@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\City;
 use App\Property;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 
 class PropertyController extends Controller
@@ -16,16 +17,22 @@ class PropertyController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function index()
     {
+
         $properties = Property::where(['user_id'=>Auth::user()->id])
             ->orderBy('created_at', 'desc')
             ->get();
         //$properties = Property::orderBy('created_at', 'desc')->get();
         //return view('properties.index', compact('properties'));
-        return view('properties.account-objects', compact('properties'));
+        if(Auth::user()->hasRole('user')){
+            return view('properties.account-objects', compact('properties'));
+        }else if(Auth::user()->hasRole('admin')){
+            return view('properties.index', compact('properties'));
+        }
+
     }
 
     /**
@@ -35,7 +42,6 @@ class PropertyController extends Controller
      */
     public function create()
     {
-
         $cities = City::get();
         /*
         $properties_type = Property::select('propertyType')
@@ -44,15 +50,11 @@ class PropertyController extends Controller
         */
        // return view('properties.create', compact('categories_prop','properties_type'));
        // return view('properties.create', compact('cities'));
-        return view('properties.add-object');
-    }
-    public function create2()
-    {
-        return view('properties.add-object-form');
-    }
-    public function create3()
-    {
-        return view('properties.add-object-form-success');
+        if(Auth::user()->hasRole('user')){
+            return view('properties.add-object', compact('cities'));
+        }else if(Auth::user()->hasRole('admin')){
+             return view('properties.create', compact('cities'));
+        }
     }
 
     /**
@@ -63,20 +65,28 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
+
+//dd($request);
         $data = request()->validate([
-            'city_id'           => 'required',
+            'city'              => 'required',
             'title'             => 'required',
-            'beds'              => '',
-            'indoorSquare'      => '',
-            'address'           => 'nullable',
-            'location'          => '',
+            'beds'              => 'nullable',
+            'indoorSquare'      => 'nullable',
+            'address'           => 'required',
+            'location'          => 'nullable',
             'description'       => 'nullable'
         ]);
+        //dd($request->all());
         $event = Property::add($data);
 
         if($request->hasFile('photo_id')){
             $files = $request->file('photo_id');
             $property_photo_name = $event->UploadPropertyPhoto($files);
+        }
+        if(Auth::user()->hasRole('user')){
+            return view('properties.add-object-form-success');
+        }else if(Auth::user()->hasRole('admin')){
+            return view('properties.index');
         }
     }
 
@@ -124,4 +134,52 @@ class PropertyController extends Controller
     {
         //
     }
+    function text_request(Request $request){
+
+        if ($request->hasFile('dZUpload')) {
+            if($request->file('dZUpload')) {
+                return 'OK';
+            }
+        }
+
+return $request->all();
+        $data = request()->validate([
+            'city'              => 'required',
+            'title'             => 'required',
+            'address'           => 'required',
+        ]);
+        //dd($request->all());
+        $event = Property::add($data);
+
+        if($request->hasFile('photo_id')){
+            $files = $request->file('photo_id');
+            $property_photo_name = $event->UploadPropertyPhoto($files);
+        }
+        if(Auth::user()->hasRole('user')){
+            return view('properties.add-object-form-success');
+        }else if(Auth::user()->hasRole('admin')){
+            return view('properties.index');
+        }
+
+        return $request->all();
+    }
+    public function imgDropzoneUpload(Request $request)
+    {
+        //dd($request->file('file'));
+        //$text = $this->text_request();
+        $text = $request->session()->get('text');
+        $image = $request->file('file');
+        //$property = Property::where('id', $id)->first();
+        //if(Auth::user()->id === $property->user_id) {
+            $filename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME). '_' . time().$text.'.'.$image->extension();
+            $image->storeAs('public/properties_images', $filename);
+           // $property->properties_photo()->create([
+             //   'name'=>$filename,
+           // ]);
+            return response()->json(['success' => $filename]);
+       // } else {
+        //    return back()->with('message','access forbidden');
+      //  }
+    }
+
 }

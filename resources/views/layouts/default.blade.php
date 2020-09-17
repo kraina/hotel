@@ -15,6 +15,7 @@
     />
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" href="http://kenwheeler.github.io/slick/slick/slick-theme.css" />
+    <link rel="stylesheet" href="{{asset('/css/dropzone.css')}}" />
     <link rel="stylesheet" href="{{asset('css/style.css')}}" />
     <link rel="stylesheet" href="{{asset('css/adaptive.css')}}" />
     @yield('style')
@@ -40,13 +41,16 @@
     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
     crossorigin="anonymous"
 ></script>
+    <script src="{{asset('/js/dropzone.js')}}"></script>
     <script src="{{asset('js/custom.js')}}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <input type="hidden" value="{{url()->current()}}" id="url" name="url">
     <script>
         $(document).ready(function() {
             $('.header_location').click(function () {
-                var city = $('#current_location').text();
+                var city = $('.current_location').text();
+                var city_id = $('.current_location').attr('data-id');
+                console.log('city_id = ' + city_id);
                 var page = $("#url").val();
                 var _token = $('input[name="_token"]').val();
                 $.ajax({

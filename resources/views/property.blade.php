@@ -55,7 +55,9 @@
                                             src="{{asset('/img/hotel_place.svg')}}"
                                             alt=""
                                         />
-                                        <p>{{ $property->city()->first()->name }}, {{ $property->address }}</p>
+
+                                        <p>{{ $property->city }}, {{ $property->address }}</p>
+
                                     </div>
                                     <div>
                                         <img
