@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Catalog')
+@section('title', 'Добавить Объект')
 @section('meta')
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
@@ -26,7 +26,7 @@
                             </div>
                         </form> -->
                         <div class="sub_info">
-                            <img src="/img/sub-info-icon.png" alt="" />
+                            <img src="{{asset('/img/sub-info-icon.png')}}" alt="" />
                             <p>Все пункты в дальнейшем можно будет поменять</p>
                         </div>
                     </div>
@@ -52,6 +52,17 @@
                             placeholder="Составьте краткое описание вашего отеля"
                         ></textarea>
                     </div>
+                    <div class="object_step">
+                        <p class="step_title">
+                            Город
+                        </p>
+                        <select id="city" name='city' class="">
+                            @foreach($cities as $city)
+                                <option value="{{$city->city}}" >{{$city->city}}</option>
+                            @endforeach
+
+                        </select>
+                    </div>
                     <div class="object_step_three object_step">
                         <p class="step_title">
                             3. Укажите адрес вашего объекта
@@ -70,7 +81,7 @@
                         class="add_new_object_bottom add_new_object_bottom_in_progress"
                     >
                         <div>
-                            <img src="/img/add_object_in_progress.png" alt="" />
+                            <img src="{{asset('/img/add_object_in_progress.png')}}" alt="" />
                             <p>50% заполнено</p>
                             <a
                                 id="step1_trigger"
@@ -109,7 +120,7 @@
                                     </p>
                                     <a href="#" class="remove_category">
                                         <img
-                                            src="/img/remove-icon.png"
+                                            src="{{asset('/img/remove-icon.png')}}"
                                             alt=""
                                         />
                                         Удалить категорию
@@ -155,7 +166,7 @@
                                     </div>
                                     <a href="#" class="add_price_per_hour"
                                         ><img
-                                            src="/img/add_hour_icon.png"
+                                            src="{{asset('/img/add_hour_icon.png')}}"
                                             alt=""
                                         />
                                         Добавить часы/стоимость</a
@@ -190,16 +201,23 @@
                 </div>
                 <div class="container add_new_object_bottom">
                     <div>
-                        <img src="/img/add_object_success.png" alt="" />
+                        <img src="{{asset('/img/add_object_success.png')}}" alt="" />
                         <p>
                             Поздравляем! <br />
                             Вы заполнили всю заявку.
                         </p>
                     </div>
+                    @guest
+                    <input class="add_new_object_next" type="submit" onclick="location.href='{{ route("add-object-form") }}';" value="Далее1">
+                    @else
+                    <input class="add_new_object_next" type="submit" onclick="location.href='{{ route("add-object-success") }}';" value="Далее2">
+
+                    @endguest
                     <a href="#" class="add_new_object_next">Далее</a>
 
                 </div>
-                <center><a href="{{ route('home.properties.create2') }}" >ДАЛЕЕ...............</a></center>
+                <!--
+                <center><a href="{\{ route('home.properties.create2') }}" >ДАЛЕЕ...............</a></center> -->
             </div>
         </div>
 @endsection
