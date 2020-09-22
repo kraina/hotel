@@ -3,10 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class Role extends Model
 {
     public function users(){
-        return $this->belongsToMany('App\User', 'role_user', 'role_id', 'user_id');
+        return $this->belongsToMany(User::class, 'role_user', 'role_id', 'user_id');
     }
 }

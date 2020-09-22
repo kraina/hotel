@@ -3,42 +3,29 @@
 namespace App;
 
 use App\Models\Filters\Properties\PropertySearch;
+use App\Property;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Number;
 
-class Property extends Model
+class Number extends Model
 {
-    protected $table = 'properties';
+    protected $table = 'numbers';
     public $primaryKey = 'id';
     public $timestamps = true;
     protected $fillable = [
-        'city',
-        'title',
-        'address',
-        'location',
-        'description'
+        'property_id',
+        'number_category_id',
+        'numbers_in_category',
+        'beds',
+        'indoorSquare',
     ];
-    public function user(){
-        return $this->belongsTo('App\User', 'user_id', 'id');
+    public function property(){
+        return $this->belongsTo(Property::class, 'property_id', 'id');
     }
-
-    public function city() {
-        return $this->belongsTo(City::class);
-    }
-    public function district() {
-        return $this->belongsTo(District::class);
-    }
-    public function metro() {
-        return $this->belongsTo(Metro::class);
-    }
-    public function property_type() {
-        return $this->belongsTo(PropertyType::class);
-    }
-    public function numbers(){
-        return $this->hasMany(Number::class);
+    public function number_category(){
+        return $this->belongsTo(NumberCategory::class);
     }
 
     public static function add($fields) // Добавление события
@@ -50,34 +37,34 @@ class Property extends Model
 
         return $event;
     }
-    /*
-    public function UploadPropertyPhoto($files){
+    public function UploadNumberPhoto($files){
         if(count($files) == 0 ) { return; }
         foreach ($files as $file) {
             $filename = pathinfo(str_replace(")", "_", str_replace("(", "_", str_replace(" ","_",$file->getClientOriginalName()))), PATHINFO_FILENAME). '_' . time(). '.'.$file->extension();
             $file->storeAs('public/properties_images', $filename);
-            $this->properties_photo()->create([
+            $this->numbers_photo()->create([
                 'name'=>$filename,
             ]);
         }
     }
-    */
-
-    public function properties_photo(){
-        return $this->hasMany(PropertiesPhoto::class);
+    public function prices(){
+        return $this->hasMany(RentalPrice::class);
     }
-    public function properties_photo_cover()
+    public function numbers_photo(){
+        return $this->hasMany(NumberPhoto::class);
+    }
+    public function numbers_photo_cover()
     {
-        return $this->properties_photo()->first();
+        return $this->numbers_photo()->first();
     }
-
+/*
     public function getPropertiesBySearch(Request $request):Builder
     {
         $builder = (new PropertySearch())->apply($request);
         return $builder;
     }
-
-    public static function update_property($fields, $id){
+*/
+    public static function update_number($fields, $id){
 
         $event = new static;
         $event->user_id = Auth::id();
@@ -85,8 +72,9 @@ class Property extends Model
 
         return $event;
     }
+    /*
     public function features(){
         return $this->belongsToMany('App\Feature', 'feature_property', 'property_id', 'feature_id');
     }
-
+*/
 }

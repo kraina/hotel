@@ -7,20 +7,18 @@
 @section('style')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.js"></script>
-    <link rel="stylesheet" href="{{asset('css/upload.css')}}" />
 @endsection
 
 @section('script')
 
     <script type="text/javascript">
 /*
-        Dropzone.autoDiscover = false;
-
         Dropzone.options.myDropzone = {
             autoProcessQueue : false,
             acceptedFiles : ".png,.jpg,.gif,.bmp,.jpeg",
-
+            clickable: ".dropzone2",
             init:function(){
+                //clickable: ".dropzone2";
                 var submitButton = document.querySelector("#submit-all");
                 myDropzone = this;
 
@@ -40,21 +38,43 @@
             }
 
         };
-
 */
+/*
+        var myDropzone = new Dropzone("#myDropzone", {
+            url: "/file/post",
+            clickable: ".dropzone2",
+
+
+
+        });
+*/
+    </script>
+<script>
+
 //Dropzone.options.myDropzone = false;
 //Dropzone.autoDiscover = false;
 
-//jQuery(document).ready(function() {
-    var myDropzone = new Dropzone("div#myDropzone", {
-
-        //$("div#myDropzone").dropzone({
-//Dropzone.options.myDropzone= {
+jQuery(document).ready(function() {
+    var previewNode = document.querySelector("#myDropzone");
+   // previewNode.id = "";
+    var previewTemplate = previewNode.parentNode.innerHTML;
+   // previewNode.parentNode.removeChild(previewNode);
+   // var myDropzone = new Dropzone("div#myDropzone", {
+    //$("div#myDropzone").dropzone({
+Dropzone.options.myDropzone= {
         url: "{{ route('home.properties.img-dropzone-upload') }}",
+    thumbnailWidth: 80,
+    thumbnailHeight: 80,
+    //parallelUploads: 20,
+    previewTemplate: previewTemplate,
+    autoQueue: false, // Make sure the files aren't queued until manually added
+    //previewsContainer: "#myDropzone", // Define the container to display the previews
+    //clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
         autoProcessQueue: false,
         uploadMultiple: true,
-        method: 'POST',
+    method: 'POST',
         //clickable: true,
+    clickable: "#myDropzone",
         parallelUploads: 5,
 
         paramName: "photo_id",
@@ -65,23 +85,24 @@
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         init: function () {
 
-            myDropzone7 = this; // Makes sure that 'this' is understood inside the functions below.
+            myDropzone = this; // Makes sure that 'this' is understood inside the functions below.
             // for Dropzone to process the queue (instead of default form behavior):
             document.getElementById("submit-all").addEventListener("click", function (e) {
                 // Make sure that the form isn't actually being sent.
                 e.preventDefault();
                 e.stopPropagation();
-                myDropzone7.processQueue();
+                myDropzone.processQueue();
             });
-            /*
-                                this.on("complete", function(){
-                                    if(this.getQueuedFiles().length == 0 && this.getUploadingFiles().length == 0)
-                                    {
-                                        var _this = this;
-                                        _this.removeAllFiles();
-                                    }
-                                });
-            */
+/*
+                    this.on("complete", function(){
+                        if(this.getQueuedFiles().length == 0 && this.getUploadingFiles().length == 0)
+                        {
+                            var _this = this;
+                            _this.removeAllFiles();
+                        }
+                    });
+*/
+
 
             //send all the form data along with the files:
             this.on("sendingmultiple", function (data, xhr, formData) {
@@ -91,8 +112,6 @@
                 formData.append("_token", jQuery('meta[name="csrf-token"]').attr('content'));
 
             });
-        }
-    });
             /*
                     this.on('error', function(file, errorMessage) {
                         if (file.accepted) {
@@ -104,12 +123,14 @@
                     });
                     */
 
-       // }
-//}
-   // });
-//});
+        }
+}
 
-        </script>
+   // });
+
+});
+
+</script>
 
 @endsection
 
@@ -136,16 +157,28 @@
                <button type="button" class="add_new_object_next" id="submit-all">Далее</button>
             </div>
 -->
-    <form action="{{ route('home.properties.img-dropzone-upload') }}" enctype="multipart/form-data" method="POST">
+    <form action="{{ route('home.properties.img-dropzone-upload') }}" class="dropzone2" id="myDropzone2" enctype="multipart/form-data" method="POST">
         <input id="title" type="text" name="title">
         <input id="city" type="text" name="city" >
         <input id="address" type="text" name="address" >
-
-        <div class="upload" id="myDropzone">
-         <!--  <div class="fallback"> -->
-        <input id="" name="photo_id" type="file" multiple="multiple" />
-      <!--   </div> -->
+        <br><br><br><br><br><br><br>
+        <!--
+        <div class="dropzone2" id="myDropzone2">
+           <div class="fallback">
+        <input id="photo_id" name="photo_id" type="file" multiple="multiple" />
+         </div>
             </div>
+            -->
+     <!--   <div class="dropzone dz-clickable" style="border: 1px solid red" id="myDropzone"> -->
+        <div class="">
+                <div class="">
+
+<label for="myDropzone" ><span>Drop files here to upload</span></label>
+                 <input class="dropzone dz-clickable" style="opacity: 0"  id="myDropzone" name="photo_id" type="file" multiple="multiple" />
+
+            <!--    </div> -->
+        </div>
+        </div>
         @csrf
         <button type="submit" id="submit-all"> upload </button>
     </form>

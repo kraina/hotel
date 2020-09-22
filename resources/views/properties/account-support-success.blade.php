@@ -9,6 +9,13 @@
 @endsection
 
 @section('script')
+    <script>
+        jQuery(document).ready(function() {
+            $('#support_form_submit_button').click(function () {
+                $(this).attr('disabled', 'disabled');
+            });
+        });
+    </script>
 @endsection
 @section('content')
         <div class="account_wrap account_support_wrap">
