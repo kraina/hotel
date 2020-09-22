@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Support;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,7 +41,12 @@ class HomeController extends Controller
     public function account_support(){
         return view('properties.account-support');
     }
-    public function account_support_success(){
+    public function account_support_success(Request $request){
+        $data = request()->validate([
+            'message' => 'required|min:3',
+        ]);
+        $event = Support::add($data);
         return view('properties.account-support-success');
+
     }
 }

@@ -24,8 +24,8 @@
                 </p>
                 <input
                     class="object_step_input"
-                    id="title2"
-                    name="title2"
+                    id="title"
+                    name="title"
                     type="text"
                     data-id = 'object_step_one_input'
                     placeholder="Напишите название объекта"
@@ -52,8 +52,8 @@
                 <div>
                     <div class="select_wrap">
                         <select
-                            id = 'city2'
-                            name="city2"
+                            id = 'city'
+                            name="city"
                             data-id="object_step_three_city"
                             class="object_step_input object_step_select"
                         >
@@ -66,8 +66,8 @@
                         </select>
                     </div>
                     <input
-                        id = "address2"
-                        name="address2"
+                        id = "address"
+                        name="address"
                         type="text"
                         data-id="object_step_three_input"
                         class="object_step_input"
@@ -110,24 +110,6 @@
                             <option value="Район 4">Район 4</option>
                         </select>
                     </div>
-
-
-
-                    <div class="category_rooms_photos">
-                        <label for=""
-                        >Прикрепите фотографии номера</label
-                        >
-
-                        <div class="category_rooms_photo dropzone2" id="myDropzone2">
-                            <div class="fallback">
-                                <input id="photo_id2" name="photo_id2" type="file" multiple="multiple" />
-                            </div>
-                        </div>
-
-                    </div>
-
-
-
 
                 </div>
                 <p class="input_error">

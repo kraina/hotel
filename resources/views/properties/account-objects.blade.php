@@ -15,8 +15,8 @@
             <div class="container">
                 <div class="account_support_content">
                     <div class="account_breadcrumbs">
-                        <a href="#"
-                            ><img src="/img/acc_bread_arr.png" alt="" />назад в
+                        <a href="{{ route('home.index') }}"
+                            ><img src="{{asset('/img/acc_bread_arr.png')}}" alt="" />назад в
                             личный кабинет</a
                         >
                     </div>
@@ -24,19 +24,20 @@
                         <p class="acc_objects_title">Мои объекты</p>
                         <div class="acc_objects_content">
                             <div class="objects_wrap">
+                                @foreach($properties as $property)
                                 <div class="acc_single_object">
                                     <div
                                         class="image"
                                         style="
-                                            background: url('/img/single_prod.jpg');
+                                            background: url('{{asset("/img/single_prod.jpg")}}');
                                         "
                                     ></div>
                                     <div class="info">
-                                        <p class="title">Отель невский авеню</p>
+                                        <p class="title">{{ $property->title }}</p>
                                         <div>
                                             <span class="icon_wrap">
                                                 <img
-                                                    src="/img/acc_sign.png"
+                                                    src="{{asset('/img/acc_sign.png')}}"
                                                     alt=""
                                             /></span>
                                             <p>
@@ -44,17 +45,17 @@
                                                 сентябрь 2020 г.
                                             </p>
                                         </div>
-                                        <a href="#">
+                                        <a href="{{ route('home.properties.edit', $property->id ) }}">
                                             <span class="icon_wrap"
                                                 ><img
-                                                    src="/img/acc_pen.png"
+                                                    src="{{asset('/img/acc_pen.png')}}"
                                                     alt="" /></span
                                             >Редактировать объявление</a
                                         >
                                         <a href="#"
                                             ><span class="icon_wrap"
                                                 ><img
-                                                    src="/img/acc_graph.png"
+                                                    src="{{asset('/img/acc_graph.png')}}"
                                                     alt="" /></span
                                             >Статистика объекта за август 2020
                                             г.</a
@@ -62,62 +63,20 @@
                                         <a href="#"
                                             ><span class="icon_wrap"
                                                 ><img
-                                                    src="/img/acc_thoughts.png"
+                                                    src="{{asset('/img/acc_thoughts.png')}}"
                                                     alt="" /></span
                                             >Отзывы об объекте</a
                                         >
                                     </div>
                                 </div>
-                                <div class="acc_single_object">
-                                    <div
-                                        class="image"
-                                        style="
-                                            background: url('/img/single_prod.jpg');
-                                        "
-                                    ></div>
-                                    <div class="info">
-                                        <p class="title">Отель невский авеню</p>
-                                        <div>
-                                            <span class="icon_wrap">
-                                                <img
-                                                    src="/img/acc_check.png"
-                                                    alt=""
-                                            /></span>
-                                            <p>
-                                                Объявление оплачено за сентябрь
-                                                2020 г.
-                                            </p>
-                                        </div>
-                                        <a href="#">
-                                            <span class="icon_wrap"
-                                                ><img
-                                                    src="/img/acc_pen.png"
-                                                    alt="" /></span
-                                            >Редактировать объявление</a
-                                        >
-                                        <a href="#"
-                                            ><span class="icon_wrap"
-                                                ><img
-                                                    src="/img/acc_graph.png"
-                                                    alt="" /></span
-                                            >Статистика объекта за август 2020
-                                            г.</a
-                                        >
-                                        <a href="#"
-                                            ><span class="icon_wrap"
-                                                ><img
-                                                    src="/img/acc_thoughts.png"
-                                                    alt="" /></span
-                                            >Отзывы об объекте</a
-                                        >
-                                    </div>
-                                </div>
+                                @endforeach
+
                             </div>
                             <div>
                                 <div class="non_payed">
                                     <div>
                                         <img
-                                            src="/img/non_payed_icon.png"
+                                            src="{{asset('/img/non_payed_icon.png')}}"
                                             alt=""
                                         />
                                         <div>

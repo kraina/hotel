@@ -5,16 +5,18 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 @section('style')
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.js"></script>
+    <link rel="stylesheet" href="{{asset('css/upload.css')}}" />
 @endsection
 
 @section('script')
 
     <script type="text/javascript">
 /*
-        Dropzone.autoDiscover = true;
+        Dropzone.autoDiscover = false;
 
-        Dropzone.options.dropzone = {
+        Dropzone.options.myDropzone = {
             autoProcessQueue : false,
             acceptedFiles : ".png,.jpg,.gif,.bmp,.jpeg",
 
@@ -40,179 +42,73 @@
         };
 
 */
+//Dropzone.options.myDropzone = false;
+//Dropzone.autoDiscover = false;
 
+//jQuery(document).ready(function() {
+    var myDropzone = new Dropzone("div#myDropzone", {
 
-        $(document).ready(function() {
-            function create_object(){
-                let title = $('#title').val();
-                let city = $('#city').val();
-                let address = $('#address').val();
-                let _token = $('input[name="_token"]').val();
-                //alert(photo);
-                $.ajax({
-                    url: "{{ route('home.properties.text_request') }}",
-                    type: "get",
-                    dataType: 'html',
-                    ifModified: true,
-                    cache: false,
-                    data: {
-                        title: title,
-                        city: city,
-                        address: address,
-                        _token: _token
-                    },
-                    success: function (result) {
-                        //alert(result);
-                    }
-                    });
-            }
+        //$("div#myDropzone").dropzone({
+//Dropzone.options.myDropzone= {
+        url: "{{ route('home.properties.img-dropzone-upload') }}",
+        autoProcessQueue: false,
+        uploadMultiple: true,
+        method: 'POST',
+        //clickable: true,
+        parallelUploads: 5,
 
-// Переменная куда будут располагаться данные файлов
+        paramName: "photo_id",
+        //maxFiles: 5,
+        //maxFilesize: 1,
+        acceptedFiles: 'image/*',
+        addRemoveLinks: true,
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        init: function () {
 
-            var files;
-
-
-// Вешаем функцию на событие
-// Получим данные файлов и добавим их в переменную
-
-
-
-
-            $('input[type="file"]').change(function(){
-                //alert('hello');
-                files = this.files;
-                //alert(files);
+            myDropzone7 = this; // Makes sure that 'this' is understood inside the functions below.
+            // for Dropzone to process the queue (instead of default form behavior):
+            document.getElementById("submit-all").addEventListener("click", function (e) {
+                // Make sure that the form isn't actually being sent.
+                e.preventDefault();
+                e.stopPropagation();
+                myDropzone7.processQueue();
             });
+            /*
+                                this.on("complete", function(){
+                                    if(this.getQueuedFiles().length == 0 && this.getUploadingFiles().length == 0)
+                                    {
+                                        var _this = this;
+                                        _this.removeAllFiles();
+                                    }
+                                });
+            */
 
-// Вешаем функцию ан событие click и отправляем AJAX запрос с данными файлов
+            //send all the form data along with the files:
+            this.on("sendingmultiple", function (data, xhr, formData) {
+                formData.append("title", jQuery("#title").val());
+                formData.append("city", jQuery("#city").val());
+                formData.append("address", jQuery("#address").val());
+                formData.append("_token", jQuery('meta[name="csrf-token"]').attr('content'));
 
-            $('#submit-all1').click(function( event ){
-                event.stopPropagation(); // Остановка происходящего
-                event.preventDefault();  // Полная остановка происходящего
-
-// Создадим данные формы и добавим в них данные файлов из files
-                var form_data = new FormData();
-                var totalfiles = document.getElementById('photo_id').files.length;
-                for (var index = 0; index < totalfiles; index++) {
-                    form_data.append("files[]", document.getElementById('photo_id').files[index]);
-                }
-                console.log(form_data[0]);
-                for (var pairs of form_data.entries()) {
-                    console.log(pairs[0]+ ', ' + pairs[1]);
-                }
-                var data = new FormData();
-
-                data.append('key', 'value');
-               $.each( files, function( photo_id, value ){
-                    data.append( 'photo_id', $('input[type="file"]').val() );
-                   for (var pair of data.entries()) {
-                       //console.log(pair[0]+ ', ' + pair[1]);
-                   }
-                });
-
-
-
-
-                data.append('image', $('input[type=file]')[0].files[0]);
-                let title = $('#title').val();
-                let city = $('#city').val();
-                let address = $('#address').val();
-                let _token = $('input[name="_token"]').val();
-
-                data.append('title', title);
-                data.append('city', city);
-                data.append('address', address);
-                data.append('_token', _token);
-                console.log(data);
-                var myString = JSON.stringify(data);
-                document.getElementById("demo").innerHTML = myString;
-
-                // Create a test FormData object
-                var formData = new FormData();
-                formData.append('key1', 'value1');
-                formData.append('key2', 'value2');
-
-// Display the key/value pairs
-                for (var pair of formData.entries()) {
-                   // console.log(pair[0]+ ', ' + pair[1]);
-                }
-
-// Отправляем запрос
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-
-                $.ajax({
-                    //url: "{\{ route('home.properties.text_request') }}",
-                    type: 'POST',
-                    data: data,
-                    cache: false,
-                    dataType: 'json',
-                    processData: false, // Не обрабатываем файлы (Don't process the files)
-                    contentType: false, // Так jQuery скажет серверу что это строковой запрос
-                    success: function( respond, textStatus, jqXHR ){
-alert(respond);
-                        // Если все ОК
-
-                      /*  if( typeof respond.error === 'undefined' ){
-                            // Файлы успешно загружены, делаем что нибудь здесь
-
-                            // выведем пути к загруженным файлам в блок '.ajax-respond'
-
-                            var files_path = respond.files;
-                            var html = '';
-                            $.each( files_path, function( key, val ){ html += val +'<br>'; } )
-                            $('.ajax-respond').html( html );
+            });
+        }
+    });
+            /*
+                    this.on('error', function(file, errorMessage) {
+                        if (file.accepted) {
+                            var mypreview = document.getElementsByClassName('dz-error');
+                            mypreview = mypreview[mypreview.length - 1];
+                            mypreview.classList.toggle('dz-error');
+                            mypreview.classList.toggle('dz-success');
                         }
-                        else{
-                            console.log('ОШИБКИ ОТВЕТА сервера: ' + respond.error );
-                        }*/
-                    },
-                    error: function( jqXHR, textStatus, errorThrown ){
-                        console.log('ОШИБКИ AJAX запроса: ' + textStatus );
-                    }
+                    });
+                    */
 
-                });
+       // }
+//}
+   // });
+//});
 
-            });
-
-
-           // $('#submit-all').click(function(){
-                //create_object();
-               // uploadFile();
-           // });
-
-
-        });
-Dropzone.options.myDropzone= {
-    url: 'upload.php',
-    autoProcessQueue: false,
-    uploadMultiple: true,
-    parallelUploads: 5,
-    maxFiles: 5,
-    maxFilesize: 1,
-    acceptedFiles: 'image/*',
-    addRemoveLinks: true,
-    init: function() {
-        dzClosure = this; // Makes sure that 'this' is understood inside the functions below.
-
-        // for Dropzone to process the queue (instead of default form behavior):
-        document.getElementById("submit-all").addEventListener("click", function(e) {
-            // Make sure that the form isn't actually being sent.
-            e.preventDefault();
-            e.stopPropagation();
-            dzClosure.processQueue();
-        });
-
-        //send all the form data along with the files:
-        this.on("sendingmultiple", function(data, xhr, formData) {
-            formData.append("firstname", jQuery("#firstname").val());
-            formData.append("lastname", jQuery("#lastname").val());
-        });
-    }
-}
         </script>
 
 @endsection
@@ -226,26 +122,35 @@ Dropzone.options.myDropzone= {
     <input id="title" type="text" name="title">
     <input id="city" type="text" name="city" >
     <input id="address" type="text" name="address" >
-            <form id="dropzone" name="dropzone" method="POST" action="{{ route('home.properties.img-dropzone-upload') }}" class="category_rooms_photo dropzone">
+            <form id="dropzone" name="dropzone" method="POST" action="{\{ route('home.properties.img-dropzone-upload') }}" class="category_rooms_photo dropzone">
 
 
 
                     <input id="photo_id" name="photo_id" type="file" multiple="multiple" />
 
 
-                @method('PUT')
-                @csrf
+                @\method('PUT')
+                @\csrf
             </form>
             <div align="center">
                <button type="button" class="add_new_object_next" id="submit-all">Далее</button>
             </div>
 -->
-    <form action="upload.php" enctype="multipart/form-data" method="POST">
-        <input type="text" id ="firstname" name ="firstname" />
-        <input type="text" id ="lastname" name ="lastname" />
-        <div class="dropzone" id="myDropzone"></div>
+    <form action="{{ route('home.properties.img-dropzone-upload') }}" enctype="multipart/form-data" method="POST">
+        <input id="title" type="text" name="title">
+        <input id="city" type="text" name="city" >
+        <input id="address" type="text" name="address" >
+
+        <div class="upload" id="myDropzone">
+         <!--  <div class="fallback"> -->
+        <input id="" name="photo_id" type="file" multiple="multiple" />
+      <!--   </div> -->
+            </div>
+        @csrf
         <button type="submit" id="submit-all"> upload </button>
     </form>
+    <div class="dz-error"></div>
+    <div class=""></div>
 
 
           <!--  <button type="button" class="btn btn-info" id="submit-all">Upload</button> -->

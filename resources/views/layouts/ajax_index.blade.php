@@ -198,12 +198,14 @@
                         @foreach($properties2 as $property2)
                         <div class="col-md-3">
                             <div class="single_prod small_prod">
+                                @if(!is_null($property1->properties_photo_cover()))
                                 <div
                                     class="image"
                                     style="
                                         background: url({{asset('storage/properties_images/'.$property2->properties_photo_cover()->name)}});
                                         "
                                 ></div>
+                                @endif
                                 <div class="single_prod_info">
                                     <p class="title">
                                         {{ $property2->title }}
