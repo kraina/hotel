@@ -110,6 +110,7 @@ class MenuPagesController extends Controller
     private function ajax_index(Request $request, Property $property)
     {
         $city_session = $request->session()->get('city');
+
         /*
         if($request->session()->has("city")){
             $request->city = $request->session()->get('city');
@@ -155,6 +156,7 @@ class MenuPagesController extends Controller
         $request->session()->get('city');
         if(is_null(session()->get('city'))){
             $current_city = "Санкт-Петербург";
+            $current_city_id = 2;
         }else{
             $current_city = session()->get('city');
         }

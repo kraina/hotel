@@ -3,10 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Property;
 
 class Feature extends Model
 {
     public function properties(){
-        return $this->belongsToMany('App\Property', 'feature_property', 'feature_id', 'property_id');
+        return $this->belongsToMany(Property::class, 'feature_property', 'feature_id', 'property_id');
     }
 }

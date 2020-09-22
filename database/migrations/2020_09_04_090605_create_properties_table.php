@@ -17,10 +17,11 @@ class CreatePropertiesTable extends Migration
             $table->id();
             $table->string('title');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            /*$table->foreignId('city_id')->constrained('cities')->onDelete('cascade'); */
+            $table->integer('property_type_id')->nullable();
+            $table->integer('city_id');
+            $table->integer('district_id')->nullable();
+            $table->integer('metro_id')->nullable();
             $table->string('city');
-            $table->integer('beds')->nullable();;
-            $table->integer('indoorSquare')->nullable();
             $table->string('address');
             $table->string('location')->nullable();
             $table->text('description')->nullable();

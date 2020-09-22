@@ -51,10 +51,13 @@ Route::get('/ajax_filter_input_location', 'MenuPagesController@ajaxFilterInputLo
 
 
 Auth::routes();
+Route::get('properties/img-dropzone-fetch/{id}', 'PropertyController@imgDropzoneFetch')->name('home.properties.img-dropzone-fetch');
+Route::get('properties/{id?}/img-dropzone-delete', 'PropertyController@imgDropzoneDelete')->name('home.properties.{id?}.img-dropzone-delete');
+//Route::post('properties/{id}/img-dropzone-upload/', 'PropertiesController@imgDropzoneUpload')->name('home.properties.{id}.img-dropzone-upload');
 
+Route::match(['get', 'post'],'properties/img-dropzone-upload/', 'PropertyController@imgDropzoneUpload')->name('home.properties.img-dropzone-upload');
+//Route::match(['get', 'post'], 'properties/text_request/', 'PropertyController@text_request')->name('home.properties.text_request');
 
-Route::post('properties/img-dropzone-upload/', 'PropertyController@imgDropzoneUpload')->name('home.properties.img-dropzone-upload');
-Route::match(['get', 'post'], 'properties/text_request/', 'PropertyController@text_request')->name('home.properties.text_request');
 Route::group([
     'middleware' => ['auth'],
     'prefix' => 'home',
@@ -64,12 +67,18 @@ Route::group([
 
         Route::resource('/', 'HomeController');
         Route::get('/account-support', 'HomeController@account_support')->name('account-support');
-        Route::get('/account-support-success', 'HomeController@account_support_success')->name('account-support-success');
+        Route::post('/account-support-success', 'HomeController@account_support_success')->name('account-support-success');
 
         Route::get('properties/test', function () {
             return view('properties.test');
         });
-        Route::get('properties/text_request/', 'PropertyController@text_request')->name('home.properties.text_request');
+        Route::get('properties/test2', function () {
+            return view('properties.test2');
+        });
+        Route::get('properties/test3', function () {
+            return view('properties.test3');
+        });
+       // Route::get('properties/text_request/', 'PropertyController@text_request')->name('home.properties.text_request');
 
 
 

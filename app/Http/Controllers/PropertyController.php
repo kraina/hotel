@@ -3,7 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\City;
+use App\District;
+use App\Metro;
+use App\Number;
+use App\NumberCategory;
+use App\PropertiesPhoto;
 use App\Property;
+use App\RentalHour;
+use App\RentalPrice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
@@ -67,6 +74,8 @@ class PropertyController extends Controller
     {
 
 //dd($request);
+       // sleep(10);
+        $images = session()->get('photo_id');
         $data = request()->validate([
             'city'              => 'required',
             'title'             => 'required',
@@ -78,11 +87,29 @@ class PropertyController extends Controller
         ]);
         //dd($request->all());
         $event = Property::add($data);
+       // $images = session()->get('photo_id');
+        foreach($images as $filename){
+            $event->properties_photo()->create([
+                'name' => $filename
+            ]);
+        }
+        //sleep(1);
+        session()->forget(['photo_id']);
+        //$request->session()->save();
+        Artisan::call('config:clear');
 
+/*
         if($request->hasFile('photo_id')){
             $files = $request->file('photo_id');
             $property_photo_name = $event->UploadPropertyPhoto($files);
         }
+*/
+
+
+        //$image = $request->file('photo_id');
+        //$filename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME) . '_' . time() . '.' . $image->extension();
+        //$image->storeAs('public/properties_images', $filename);
+
         if(Auth::user()->hasRole('user')){
             return view('properties.add-object-form-success');
         }else if(Auth::user()->hasRole('admin')){
@@ -107,9 +134,77 @@ class PropertyController extends Controller
      * @param  \App\Property  $property
      * @return \Illuminate\Http\Response
      */
-    public function edit(Property $property)
+    public function edit($id)
     {
-        //
+        $property = Property::where('id', $id)->first();
+        $property_id = $property->id;
+        $property_title = $property->title;
+        $property_city = $property->city;
+        $property_district = $property->district()->first();
+        $property_address = $property->address;
+        $property_description = $property->description;
+        //$property_metro = $property->metro()->first()->name;
+        $metros_city = Metro::where('city_id', $property->city_id)->get();
+        $cities = City::get();
+        $metros = Metro::get();
+        $districts = District::get();
+        $districts_city = District::where('city_id', $property->city_id)->get();
+        $number_categories = NumberCategory::get();
+        $property_numbers = $property->numbers()->get();
+        $numbers = Number::where("property_id", $property_id)->get();
+        $number_id = $numbers->first()->id;
+        $prices = $numbers->first()->prices()->get();
+        $price = $prices->first()->price;
+        $rental_hour_id = $prices->first()->rental_hour_id;
+        $rental_hours = RentalHour::get();
+        $property_rental_prices = RentalPrice::get();
+        //$number_prices = $property_rental_prices->number()->get();
+       // dd($number_prices);
+        $number_rental_prices = RentalPrice::where('number_id', $number_id)->get();
+        $numbers_rental_prices_first = $number_rental_prices->first();
+        $rental_hour_text = $rental_hours->where('id', $rental_hour_id);
+        foreach($number_rental_prices as $number_rental_price){
+           // dd($number_rental_price);
+        }
+        //dd($rental_hours->first()->prices()->get()->first()->price);
+        //dd($rental_hour_text->first()->name);
+        //dd($numbers_rental_prices->number()->get());
+        //dd($number_rental_prices->get());
+        //dd($numbers_rental_prices_first);
+        //dd($rental_hour_text->first()->name);
+        //dd($rental_hour_id);
+        //dd($price);
+        //dd($prices);
+        //dd($numbers);
+        //dd($property_numbers);
+
+        //$property_numbers_ids = $property_numbers->id;
+        $property_number_category = $property_numbers->first()->number_category()->get();
+
+
+        //dd($property_rental_prices->number());
+        $property_rental_price_for_hours = '';
+        if(Auth::user()->id === $property->user_id) {
+            return view('properties.edit-object', compact(
+                'property',
+                'property_id',
+                'property_title',
+                'cities',
+                'property_city',
+                'property_address',
+                'property_description',
+                'metros_city',
+                'districts_city',
+                'property_district',
+                'rental_hours',
+                'number_categories',
+                'property_numbers',
+                'number_rental_prices',
+                'property_rental_prices'
+            ));
+        } else {
+            return back()->with('message','access forbidden');
+        }
     }
 
     /**
@@ -134,26 +229,55 @@ class PropertyController extends Controller
     {
         //
     }
+    /*
     function text_request(Request $request){
 
-        if ($request->hasFile('dZUpload')) {
-            if($request->file('dZUpload')) {
-                return 'OK';
-            }
-        }
-
-return $request->all();
+    }
+    */
+    public function imgDropzoneUpload(Request $request)
+    {
+       // session()->forget(['photo_id']);
+        //sleep(1);
+        //$request->session()->save();
+        //Artisan::call('config:clear');
+        $images = $request->file('photo_id');
         $data = request()->validate([
             'city'              => 'required',
             'title'             => 'required',
+            'beds'              => 'nullable',
+            'indoorSquare'      => 'nullable',
             'address'           => 'required',
+            'location'          => 'nullable',
+            'description'       => 'nullable'
         ]);
         //dd($request->all());
         $event = Property::add($data);
+        $filenames = array();
+        foreach($images as $image){
+            $filename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME) . '_' . time() . '.' . $image->extension();
+            $image->storeAs('public/properties_images', $filename);
+        //$image = $request->file('photo_id');
+            $filenames[] = $filename;
 
-        if($request->hasFile('photo_id')){
-            $files = $request->file('photo_id');
-            $property_photo_name = $event->UploadPropertyPhoto($files);
+
+            // $images = session()->get('photo_id');
+            //foreach($images as $filename){
+                $event->properties_photo()->create([
+                    'name' => $filename
+                ]);
+           // }
+
+
+
+        if(!is_null($filename)){
+            Artisan::call('config:clear');
+           // $request->session()->put('photo_id', $filename);
+            $request->session()->push('photo_id', $filename);
+            $request->session()->save();
+            $request->session()->push('photo_id2', $filename);
+            $request->session()->save();
+
+        }
         }
         if(Auth::user()->hasRole('user')){
             return view('properties.add-object-form-success');
@@ -161,25 +285,78 @@ return $request->all();
             return view('properties.index');
         }
 
-        return $request->all();
+        /*
+        if(Auth::user()->hasRole('user')){
+            return view('properties.add-object-form-success');
+        }else if(Auth::user()->hasRole('admin')){
+            return view('properties.index');
+        }else{
+            return view('index');
+        }
+*/
+/*
+        $data = request()->validate([
+            'city'              => 'required',
+            'title'             => 'required',
+            'beds'              => 'nullable',
+            'indoorSquare'      => 'nullable',
+            'address'           => 'required',
+            'location'          => 'nullable',
+            'description'       => 'nullable'
+        ]);
+ $event = Property::add($data);
+*/
+
+       // $image = $request->file('photo_id');
+
+   // $filename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME) . '_' . time() . '.' . $image->extension();
+   // $image->storeAs('public/properties_images', $filename);
+    /*
+    $event->properties_photo()->create([
+        'name' => $filename,
+    ]);
+*/
+/*
+        if(Auth::user()->hasRole('user')){
+            return view('properties.add-object-form-success');
+        }else if(Auth::user()->hasRole('admin')){
+            return view('properties.index');
+        }
+*/
     }
-    public function imgDropzoneUpload(Request $request)
+    public function imgDropzoneFetch($id)
     {
-        //dd($request->file('file'));
-        //$text = $this->text_request();
-        $text = $request->session()->get('text');
-        $image = $request->file('file');
-        //$property = Property::where('id', $id)->first();
-        //if(Auth::user()->id === $property->user_id) {
-            $filename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME). '_' . time().$text.'.'.$image->extension();
-            $image->storeAs('public/properties_images', $filename);
-           // $property->properties_photo()->create([
-             //   'name'=>$filename,
-           // ]);
-            return response()->json(['success' => $filename]);
-       // } else {
-        //    return back()->with('message','access forbidden');
-      //  }
+        //$images = \File::allFiles('storage/properties_images');
+        $property = Property::where('id', $id)->first();
+        if(Auth::user()->id === $property->user_id) {
+            $properties_photo = $property->properties_photo()->get();
+            $output = '<div class="row">';
+            foreach($properties_photo as $image)
+            {
+                $output .= '
+      <div class="col-md-2" style="margin-bottom:16px;" align="center">
+                <img src="'.asset('storage/properties_images/' . $image->name).'" class="img-thumbnail" style="height:175px;" />
+                <button type="button" class="btn btn-link remove_image" id="'.$image->name.'">Remove</button>
+            </div>
+      ';
+            }
+            $output .= '</div>';
+            echo $output;
+        } else {
+            return back()->with('message','access forbidden');
+        }
+    }
+    function imgDropzoneDelete(Request $request, $id = null)
+    {
+        $property = Property::where('id', $id)->first();
+        if(Auth::user()->id === $property->user_id) {
+            $name = $request->get('name');
+            PropertiesPhoto::where('name', $name )->delete();
+            $photo_path = 'storage/properties_images/' . $name;
+            unlink($photo_path);
+        } else {
+            return back()->with('message','access forbidden');
+        }
     }
 
 }

@@ -9,6 +9,13 @@
 @endsection
 
 @section('script')
+    <script>
+        jQuery(document).ready(function() {
+            $('#support_form_submit_button').click(function () {
+                $(this).attr('disabled', 'disabled');
+            });
+        });
+    </script>
 @endsection
 @section('content')
         <div class="account_wrap account_support_wrap">
@@ -34,13 +41,15 @@
                         </p>
                     </div>
                     <div class="acc_supp_form">
+                        <form action="{{ route('home.account-support-success') }}" method="POST" class="" id="support" >
                         <textarea
-                            name=""
-                            id=""
+                            name="message"
+                            id="message"
                             placeholder="Опишите Вашу проблему"
                         ></textarea>
-                        <button>Отправить</button>
-                        <a href="{{ route('home.account-support-success') }}" >Success</a>
+                            @csrf
+                        <button form="support" id="support_form_submit_button" type="submit">Отправить</button>
+                        </form>
                     </div>
                 </div>
             </div>
